@@ -12,7 +12,7 @@ public class FrmTetris extends JFrame implements ActionListener {
 
     public FrmTetris() {
 
-        setSize(600, 750);
+        setSize(610, 750);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Tetris");
@@ -27,16 +27,16 @@ public class FrmTetris extends JFrame implements ActionListener {
             if(e.getKeyChar() == '.') {
 
                 Round.deleteCurrent();
-                Round.x1++;
-                Round.x2++;
+                Round.x1increase();
+                Round.x2increase();
                 Round.drawCurrent();
                 Round.drawGrid();
             }
             if(e.getKeyChar() == ',') {
 
                 Round.deleteCurrent();
-                Round.x1--;
-                Round.x2--;
+                Round.x1decrease();
+                Round.x2decrease();
                 Round.drawCurrent();
                 Round.drawGrid();
             }

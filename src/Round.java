@@ -39,9 +39,9 @@ public class Round {
     public Round() {}
     public static void next() {
 
+        System.out.println("x1:" + x1 + ", x2:" + x2);
         updateTime();
 
-        System.out.println(choose);
         if(anew == 0) {
 
             Block[] list = {Block.SBLOCK, Block.ZBLOCK, Block.LBLOCK,
@@ -60,8 +60,8 @@ public class Round {
             deleteCurrent();
 
             FrmTetris.graph.clean();
-            y1--;
-            y2--;
+            y1decrease();
+            y2decrease();
         }
 
         drawCurrent();
@@ -132,5 +132,53 @@ public class Round {
         FrmTetris.graph.fillRect(x1, y1 - 1, x2, y2 - 1, Color.LIGHT_GRAY);
         FrmTetris.graph.fillRect(x1, y1, x2, y2, Color.LIGHT_GRAY);
         FrmTetris.graph.fillRect(x1 + 1, y1, x2 + 1, y2, Color.LIGHT_GRAY);
+    }
+
+    public static void x1increase() {
+
+        if((x1 + 1) > 8) return;
+        x1++;
+    }
+
+    public static void x2increase() {
+
+        if((x2 + 1) > 9) return;
+        x2++;
+    }
+
+    public static void y1increase() {
+
+        if((y1 + 1) > 18) return;
+        y1++;
+    }
+
+    public static void y2increase() {
+
+        if((y2 + 1) > 19) return;
+        y2++;
+    }
+
+    public static void x1decrease() {
+
+        if((x1 - 1) < 1) return;
+        x1--;
+    }
+
+    public static void x2decrease() {
+
+        if((x2 - 1) < 2) return;
+        x2--;
+    }
+
+    public static void y1decrease() {
+
+        if((y1 - 1) < 1) return;
+        y1--;
+    }
+
+    public static void y2decrease() {
+
+        if((y2 - 1) < 2) return;
+        y2--;
     }
 }

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class FrmTetris extends JFrame implements ActionListener {
 
-    private Timer timer = null;
+    private static Timer timer = null;
     public static JCartesian graph = null;
     public static JLabel lblCounter = null;
     private JButton btnStartStop = null;
@@ -19,12 +19,29 @@ public class FrmTetris extends JFrame implements ActionListener {
 
         initUI();
 
-        this.timer = new Timer(1000, new ActionListener() {
+        timer = new Timer(1000, e -> Round.next());
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Round.next();
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+
+            if(e.getKeyChar() == '.') {
+
+                Round.deleteCurrent();
+                Round.x1++;
+                Round.x2++;
+                Round.drawCurrent();
+                Round.drawGrid();
             }
+            if(e.getKeyChar() == ',') {
+
+                Round.deleteCurrent();
+                Round.x1--;
+                Round.x2--;
+                Round.drawCurrent();
+                Round.drawGrid();
+            }
+
+            return false;
         });
 
         setVisible(true);
@@ -47,7 +64,8 @@ public class FrmTetris extends JFrame implements ActionListener {
 
     private void pnlCenter() {
 
-        this.graph = new JCartesian(600, 600, 0.0, 0.0, 10.0, 20.0);
+        graph = new JCartesian(600, 600, 0.0, 0.0, 10.0, 20.0);
+        Round.drawGrid();
         this.add(graph, BorderLayout.CENTER);
     }
 
@@ -56,9 +74,9 @@ public class FrmTetris extends JFrame implements ActionListener {
         JPanel pnlSouth = new JPanel(new GridLayout(1, 2));
 
         JPanel pnlCounter = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.lblCounter = new JLabel("0:00");
-        this.lblCounter.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-        pnlCounter.add(this.lblCounter);
+        lblCounter = new JLabel("0:00");
+        lblCounter.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        pnlCounter.add(lblCounter);
 
         JPanel pnlButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         this.btnStartStop = new JButton("START");
@@ -76,7 +94,7 @@ public class FrmTetris extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.btnStartStop) {
 
-            if (this.timer.isRunning()) {
+            if (timer.isRunning()) {
 
                 timer.stop();
                 this.btnStartStop.setText("START");
@@ -91,7 +109,7 @@ public class FrmTetris extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new FrmTetris());
+        SwingUtilities.invokeLater(FrmTetris::new);
     }
 
 }

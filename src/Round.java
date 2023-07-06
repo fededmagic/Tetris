@@ -30,8 +30,8 @@ public class Round {
     private static int time = 0;
     private static int anew = 0;
     private static Block choose = Block.SBLOCK;
-    private static double x1 = 0;
-    private static double x2 = 0;
+    public static double x1 = 0;
+    public static double x2 = 0;
     private static double y1 = 0;
     private static double y2 = 0;
 
@@ -57,32 +57,16 @@ public class Round {
         }
         else {
 
-            switch (choose) {
-                case SBLOCK -> Round.deleteSBlock();
-                case ZBLOCK -> Round.deleteSBlock();
-                case LBLOCK -> Round.deleteSBlock();
-                case JBLOCK -> Round.deleteSBlock();
-                case SQUAREBLOCK -> Round.deleteSBlock();
-                case IBLOCK -> Round.deleteSBlock();
-                case TBLOCK -> Round.deleteSBlock();
-                default -> Round.deleteSBlock();
-            }
+            deleteCurrent();
 
             FrmTetris.graph.clean();
             y1--;
             y2--;
         }
 
-        switch (choose) {
-            case SBLOCK -> Round.drawNewSBlock();
-            case ZBLOCK -> Round.drawNewSBlock();
-            case LBLOCK -> Round.drawNewSBlock();
-            case JBLOCK -> Round.drawNewSBlock();
-            case SQUAREBLOCK -> Round.drawNewSBlock();
-            case IBLOCK -> Round.drawNewSBlock();
-            case TBLOCK -> Round.drawNewSBlock();
-            default -> Round.drawNewSBlock();
-        }
+        drawCurrent();
+
+        drawGrid();
     }
 
     private static void updateTime() {
@@ -98,6 +82,41 @@ public class Round {
         FrmTetris.lblCounter.setText(minutes + ":" + zero + seconds);
     }
 
+    public static void drawGrid() {
+
+        for(double i = 1; i < 10; i++)
+            FrmTetris.graph.drawLine(i, 0, i, 20, Color.GRAY);
+        for(double i = 1; i < 20; i++)
+            FrmTetris.graph.drawLine(0, i,10, i, Color.GRAY);
+    }
+
+    public static void drawCurrent() {
+
+        switch (choose) {
+            case SBLOCK -> Round.drawNewSBlock();
+            case ZBLOCK -> Round.drawNewSBlock();
+            case LBLOCK -> Round.drawNewSBlock();
+            case JBLOCK -> Round.drawNewSBlock();
+            case SQUAREBLOCK -> Round.drawNewSBlock();
+            case IBLOCK -> Round.drawNewSBlock();
+            case TBLOCK -> Round.drawNewSBlock();
+            default -> Round.drawNewSBlock();
+        }
+    }
+
+    public static void deleteCurrent() {
+
+        switch (choose) {
+            case SBLOCK -> Round.deleteSBlock();
+            case ZBLOCK -> Round.deleteSBlock();
+            case LBLOCK -> Round.deleteSBlock();
+            case JBLOCK -> Round.deleteSBlock();
+            case SQUAREBLOCK -> Round.deleteSBlock();
+            case IBLOCK -> Round.deleteSBlock();
+            case TBLOCK -> Round.deleteSBlock();
+            default -> Round.deleteSBlock();
+        }
+    }
 
     public static void drawNewSBlock() {
 

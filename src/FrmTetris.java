@@ -21,24 +21,44 @@ public class FrmTetris extends JFrame implements ActionListener {
 
         timer = new Timer(1000, e -> Round.next());
 
+        Round.heights = new int[10];
+        for(int i = 0; i < 10; i++) Round.heights[i] = 0;
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
 
             if(e.getKeyChar() == '.') {
 
                 Round.deleteCurrent();
+
                 Round.x1increase();
                 Round.x2increase();
+
                 Round.drawCurrent();
                 Round.drawGrid();
             }
+
             if(e.getKeyChar() == ',') {
 
                 Round.deleteCurrent();
+
                 Round.x1decrease();
                 Round.x2decrease();
+
                 Round.drawCurrent();
                 Round.drawGrid();
+            }
+
+            if(e.getKeyChar() == 'v') {
+
+                Round.deleteCurrent();
+
+                for(int i = 0; i < 20; i++) Round.y1decrease();
+                for(int i = 0; i < 20; i++) Round.y2decrease();
+
+                Round.drawNewSBlock();
+                Round.drawGrid();
+
+                Round.anew = 0;
             }
 
             return false;

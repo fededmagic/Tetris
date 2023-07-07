@@ -28,12 +28,13 @@ public class Round {
     }
 
     private static int time = 0;
-    private static int anew = 0;
+    public static int anew = 0;
     private static Block choose = Block.SBLOCK;
     public static double x1 = 0;
     public static double x2 = 0;
-    private static double y1 = 0;
-    private static double y2 = 0;
+    public static double y1 = 0;
+    public static double y2 = 0;
+    public static int[] heights = null;
 
 
     public Round() {}
@@ -59,7 +60,6 @@ public class Round {
 
             deleteCurrent();
 
-            FrmTetris.graph.clean();
             y1decrease();
             y2decrease();
         }
@@ -128,10 +128,10 @@ public class Round {
 
     public static void deleteSBlock() {
 
-        FrmTetris.graph.fillRect(x1 - 1, y1 - 1, x2 - 1, y2 - 1, Color.LIGHT_GRAY);
-        FrmTetris.graph.fillRect(x1, y1 - 1, x2, y2 - 1, Color.LIGHT_GRAY);
-        FrmTetris.graph.fillRect(x1, y1, x2, y2, Color.LIGHT_GRAY);
-        FrmTetris.graph.fillRect(x1 + 1, y1, x2 + 1, y2, Color.LIGHT_GRAY);
+        FrmTetris.graph.fillRect(x1 - 1, y1 - 1, x2 - 1, y2 - 1, Color.WHITE);
+        FrmTetris.graph.fillRect(x1, y1 - 1, x2, y2 - 1, Color.WHITE);
+        FrmTetris.graph.fillRect(x1, y1, x2, y2, Color.WHITE);
+        FrmTetris.graph.fillRect(x1 + 1, y1, x2 + 1, y2, Color.WHITE);
     }
 
     public static void x1increase() {

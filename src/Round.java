@@ -34,7 +34,7 @@ public class Round {
     public static double x2 = 0;
     public static double y1 = 0;
     public static double y2 = 0;
-    public static int[] heights = null;
+    public static int[][] heights = null;
 
 
     public Round() {}
@@ -51,22 +51,48 @@ public class Round {
             Random random = new Random();
             choose = list[random.nextInt(7)];
 
-            x1 = 5.0;
+            x1 = 3.0;
             x2 = 6.0;
-            y1 = 19.0;
+            y1 = 18.0;
             y2 = 20.0;
         }
         else {
 
             deleteCurrent();
 
-            y1decrease();
-            y2decrease();
+            y1controlDecrease();
+            y2controlDecrease();
         }
 
         drawCurrent();
 
         drawGrid();
+    }
+
+    public static void falldown() {
+
+        Round.deleteCurrent();
+
+        int pos = 0;
+        while(heights[(int) x1][pos] == 0) pos++;
+        heights[(int) x1][pos] = 1;
+
+        pos = 0;
+        while(heights[(int) x1 + 1][pos] == 0) pos++;
+        heights[(int) x1 + 1][pos] = 1;
+        heights[(int) x1 + 1][pos + 1] = 1;
+
+        pos = 0;
+        while(heights[(int) x2][pos] == 0) pos++;
+        heights[(int) x2][pos] = 1;
+
+        for(int i = 0; i < 20; i++) Round.y1controlDecrease();
+        for(int i = 0; i < 20; i++) Round.y2controlDecrease();
+
+        Round.drawNewSBlock();
+        Round.drawGrid();
+
+        Round.anew = 0;
     }
 
     private static void updateTime() {
@@ -120,29 +146,29 @@ public class Round {
 
     public static void drawNewSBlock() {
 
-        FrmTetris.graph.fillRect(x1 - 1, y1 - 1, x2 - 1, y2 - 1, Color.GREEN);
-        FrmTetris.graph.fillRect(x1, y1 - 1, x2, y2 - 1, Color.GREEN);
-        FrmTetris.graph.fillRect(x1, y1, x2, y2, Color.GREEN);
-        FrmTetris.graph.fillRect(x1 + 1, y1, x2 + 1, y2, Color.GREEN);
+        FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.GREEN);
+        FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.GREEN);
+        FrmTetris.graph.fillRect(x1 + 1, y2 - 1, x1 + 2, y2, Color.GREEN);
+        FrmTetris.graph.fillRect(x1 + 2, y2 - 1, x2, y2, Color.RED);
     }
 
     public static void deleteSBlock() {
 
-        FrmTetris.graph.fillRect(x1 - 1, y1 - 1, x2 - 1, y2 - 1, Color.WHITE);
-        FrmTetris.graph.fillRect(x1, y1 - 1, x2, y2 - 1, Color.WHITE);
-        FrmTetris.graph.fillRect(x1, y1, x2, y2, Color.WHITE);
-        FrmTetris.graph.fillRect(x1 + 1, y1, x2 + 1, y2, Color.WHITE);
+        FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.WHITE);
+        FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.WHITE);
+        FrmTetris.graph.fillRect(x1 + 1, y2 - 1, x1 + 2, y2, Color.WHITE);
+        FrmTetris.graph.fillRect(x1 + 2, y2 - 1, x2, y2, Color.WHITE);
     }
 
     public static void x1increase() {
 
-        if((x1 + 1) > 8) return;
+        if(x1 > 6) return;
         x1++;
     }
 
     public static void x2increase() {
 
-        if((x2 + 1) > 9) return;
+        if(x2 > 9) return;
         x2++;
     }
 
@@ -160,13 +186,13 @@ public class Round {
 
     public static void x1decrease() {
 
-        if((x1 - 1) < 1) return;
+        if(x1 < 1) return;
         x1--;
     }
 
     public static void x2decrease() {
 
-        if((x2 - 1) < 2) return;
+        if(x2 < 4) return;
         x2--;
     }
 
@@ -179,6 +205,18 @@ public class Round {
     public static void y2decrease() {
 
         if((y2 - 1) < 2) return;
+        y2--;
+    }
+
+    public static void y1controlDecrease() {
+
+        //if(Round.heights[(int) x1] >= y1) return;
+        y1--;
+    }
+
+    public static void y2controlDecrease() {
+
+        //if(Round.heights[(int) x2] >= y2) return;
         y2--;
     }
 }

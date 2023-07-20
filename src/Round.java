@@ -40,7 +40,8 @@ public class Round {
     public Round() {}
     public static void next() {
 
-        System.out.println("x1:" + x1 + ", x2:" + x2);
+        //System.out.println("x1:" + x1 + ", x2:" + x2);
+        Round.showMatrix();
         updateTime();
 
         if(anew == 0) {
@@ -146,6 +147,11 @@ public class Round {
 
     public static void drawNewSBlock() {
 
+        Round.heights[(int) x1][(int) y1] = 1;
+        Round.heights[(int) x1 + 1][(int) y1] = 1;
+        Round.heights[(int) x1 + 1][(int) y1 + 1] = 1;
+        Round.heights[(int) x1 + 2][(int) y2 - 1] = 1;
+
         FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.GREEN);
         FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.GREEN);
         FrmTetris.graph.fillRect(x1 + 1, y2 - 1, x1 + 2, y2, Color.GREEN);
@@ -153,6 +159,11 @@ public class Round {
     }
 
     public static void deleteSBlock() {
+
+        Round.heights[(int) x1][(int) y1] = 0;
+        Round.heights[(int) x1 + 1][(int) y1] = 0;
+        Round.heights[(int) x1 + 1][(int) y1 + 1] = 0;
+        Round.heights[(int) x1 + 2][(int) y2 - 1] = 0;
 
         FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.WHITE);
         FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.WHITE);
@@ -218,5 +229,17 @@ public class Round {
 
         //if(Round.heights[(int) x2] >= y2) return;
         y2--;
+        Round.heights[(int) x1][(int) y1] = 1;
+    }
+
+    public static void showMatrix() {
+
+        for(int i = 19; i > 0; i--) {
+            for(int j = 9; j > 0; j--)
+                System.out.print(Round.heights[j][i] + " ");
+            System.out.print("\n");
+        }
+
+        System.out.println("-----------------------------");
     }
 }

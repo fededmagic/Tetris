@@ -40,8 +40,8 @@ public class Round {
     public Round() {}
     public static void next() {
 
-        //System.out.println("x1:" + x1 + ", x2:" + x2);
         Round.showMatrix();
+        //System.out.println("x1:" + x1 + ", x2:" + x2);
         updateTime();
 
         if(anew == 0) {
@@ -71,7 +71,7 @@ public class Round {
     }
 
     public static void falldown() {
-
+/*
         Round.deleteCurrent();
 
         int pos = 0;
@@ -90,10 +90,11 @@ public class Round {
         for(int i = 0; i < 20; i++) Round.y1controlDecrease();
         for(int i = 0; i < 20; i++) Round.y2controlDecrease();
 
-        Round.drawNewSBlock();
+        SBlock.drawNewSBlock();
         Round.drawGrid();
 
-        Round.anew = 0;
+        Round.anew = 0;*/
+        while(true) drawCurrent();
     }
 
     private static void updateTime() {
@@ -120,55 +121,29 @@ public class Round {
     public static void drawCurrent() {
 
         switch (choose) {
-            case SBLOCK -> Round.drawNewSBlock();
-            case ZBLOCK -> Round.drawNewSBlock();
-            case LBLOCK -> Round.drawNewSBlock();
-            case JBLOCK -> Round.drawNewSBlock();
-            case SQUAREBLOCK -> Round.drawNewSBlock();
-            case IBLOCK -> Round.drawNewSBlock();
-            case TBLOCK -> Round.drawNewSBlock();
-            default -> Round.drawNewSBlock();
+            case SBLOCK -> SBlock.drawNewSBlock();
+            case ZBLOCK -> SBlock.drawNewSBlock();
+            case LBLOCK -> SBlock.drawNewSBlock();
+            case JBLOCK -> SBlock.drawNewSBlock();
+            case SQUAREBLOCK -> SBlock.drawNewSBlock();
+            case IBLOCK -> SBlock.drawNewSBlock();
+            case TBLOCK -> SBlock.drawNewSBlock();
+            default -> SBlock.drawNewSBlock();
         }
     }
 
     public static void deleteCurrent() {
 
         switch (choose) {
-            case SBLOCK -> Round.deleteSBlock();
-            case ZBLOCK -> Round.deleteSBlock();
-            case LBLOCK -> Round.deleteSBlock();
-            case JBLOCK -> Round.deleteSBlock();
-            case SQUAREBLOCK -> Round.deleteSBlock();
-            case IBLOCK -> Round.deleteSBlock();
-            case TBLOCK -> Round.deleteSBlock();
-            default -> Round.deleteSBlock();
+            case SBLOCK -> SBlock.deleteSBlock();
+            case ZBLOCK -> SBlock.deleteSBlock();
+            case LBLOCK -> SBlock.deleteSBlock();
+            case JBLOCK -> SBlock.deleteSBlock();
+            case SQUAREBLOCK -> SBlock.deleteSBlock();
+            case IBLOCK -> SBlock.deleteSBlock();
+            case TBLOCK -> SBlock.deleteSBlock();
+            default -> SBlock.deleteSBlock();
         }
-    }
-
-    public static void drawNewSBlock() {
-
-        Round.heights[(int) x1][(int) y1] = 1;
-        Round.heights[(int) x1 + 1][(int) y1] = 1;
-        Round.heights[(int) x1 + 1][(int) y1 + 1] = 1;
-        Round.heights[(int) x1 + 2][(int) y2 - 1] = 1;
-
-        FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.GREEN);
-        FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.GREEN);
-        FrmTetris.graph.fillRect(x1 + 1, y2 - 1, x1 + 2, y2, Color.GREEN);
-        FrmTetris.graph.fillRect(x1 + 2, y2 - 1, x2, y2, Color.RED);
-    }
-
-    public static void deleteSBlock() {
-
-        Round.heights[(int) x1][(int) y1] = 0;
-        Round.heights[(int) x1 + 1][(int) y1] = 0;
-        Round.heights[(int) x1 + 1][(int) y1 + 1] = 0;
-        Round.heights[(int) x1 + 2][(int) y2 - 1] = 0;
-
-        FrmTetris.graph.fillRect(x1, y1, x1 + 1, y1 + 1, Color.WHITE);
-        FrmTetris.graph.fillRect(x1 + 1, y1, x1 + 2, y1 + 1, Color.WHITE);
-        FrmTetris.graph.fillRect(x1 + 1, y2 - 1, x1 + 2, y2, Color.WHITE);
-        FrmTetris.graph.fillRect(x1 + 2, y2 - 1, x2, y2, Color.WHITE);
     }
 
     public static void x1increase() {
@@ -221,21 +196,28 @@ public class Round {
 
     public static void y1controlDecrease() {
 
-        //if(Round.heights[(int) x1] >= y1) return;
+        if(y1 < 1) {
+
+            Round.anew = 0;
+            return;
+        }
         y1--;
     }
 
     public static void y2controlDecrease() {
 
-        //if(Round.heights[(int) x2] >= y2) return;
+        if(y2 < 3) {
+
+            Round.anew = 0;
+            return;
+        }
         y2--;
-        Round.heights[(int) x1][(int) y1] = 1;
     }
 
     public static void showMatrix() {
 
-        for(int i = 19; i > 0; i--) {
-            for(int j = 9; j > 0; j--)
+        for(int i = 19; i >= 0; i--) {
+            for(int j = 0; j < 10; j++)
                 System.out.print(Round.heights[j][i] + " ");
             System.out.print("\n");
         }

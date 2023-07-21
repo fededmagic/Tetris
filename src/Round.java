@@ -94,7 +94,19 @@ public class Round {
         Round.drawGrid();
 
         Round.anew = 0;*/
-        while(true) drawCurrent();
+        while(anew == 1) {
+
+            deleteCurrent();
+            drawGrid();
+
+            y1controlDecrease();
+            y2controlDecrease();
+
+            drawCurrent();
+            drawGrid();
+
+            System.out.println("anew:" + anew);
+        }
     }
 
     private static void updateTime() {

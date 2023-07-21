@@ -74,29 +74,7 @@ public class Round {
     }
 
     public static void falldown() {
-/*
-        Round.deleteCurrent();
 
-        int pos = 0;
-        while(heights[(int) x1][pos] == 0) pos++;
-        heights[(int) x1][pos] = 1;
-
-        pos = 0;
-        while(heights[(int) x1 + 1][pos] == 0) pos++;
-        heights[(int) x1 + 1][pos] = 1;
-        heights[(int) x1 + 1][pos + 1] = 1;
-
-        pos = 0;
-        while(heights[(int) x2][pos] == 0) pos++;
-        heights[(int) x2][pos] = 1;
-
-        for(int i = 0; i < 20; i++) Round.y1controlDecrease();
-        for(int i = 0; i < 20; i++) Round.y2controlDecrease();
-
-        SBlock.drawNewSBlock();
-        Round.drawGrid();
-
-        Round.anew = 0;*/
         while(anew == 1) {
 
             deleteCurrent();
@@ -107,8 +85,6 @@ public class Round {
 
             drawCurrent();
             drawGrid();
-
-            System.out.println("anew:" + anew);
         }
     }
 
@@ -173,18 +149,6 @@ public class Round {
         x2++;
     }
 
-    public static void y1increase() {
-
-        if((y1 + 1) > 18) return;
-        y1++;
-    }
-
-    public static void y2increase() {
-
-        if((y2 + 1) > 19) return;
-        y2++;
-    }
-
     public static void x1decrease() {
 
         if(x1 < 1) return;
@@ -195,18 +159,6 @@ public class Round {
 
         if(x2 < 4) return;
         x2--;
-    }
-
-    public static void y1decrease() {
-
-        if((y1 - 1) < 1) return;
-        y1--;
-    }
-
-    public static void y2decrease() {
-
-        if((y2 - 1) < 2) return;
-        y2--;
     }
 
     public static void y1controlDecrease() {

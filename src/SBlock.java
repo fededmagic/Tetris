@@ -2,7 +2,6 @@ import java.awt.*;
 
 public class SBlock {
 
-
     public static void drawNewSBlock() {
 
         System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
@@ -21,32 +20,21 @@ public class SBlock {
             Round.y1++;
             Round.y2++;
 
-            Round.heights[(int) Round.x1][(int) Round.y1] = 1;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = 1;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = 1;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = 1;
-
+            SBlockInMatrix(1);
             paintSBlock(Color.GREEN);
 
             Round.anew = 0;
             return;
         }
 
-        Round.heights[(int) Round.x1][(int) Round.y1] = 1;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = 1;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = 1;
-        Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = 1;
+        SBlockInMatrix(1);
 
         paintSBlock(Color.GREEN);
     }
 
     public static void deleteSBlock() {
 
-        Round.heights[(int) Round.x1][(int) Round.y1] = 0;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = 0;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = 0;
-        Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = 0;
-
+        SBlockInMatrix(0);
         paintSBlock(Color.LIGHT_GRAY);
     }
 
@@ -56,5 +44,13 @@ public class SBlock {
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y2 - 1, Round.x1 + 2, Round.y2, color);
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y2 - 1, Round.x2, Round.y2, color);
+    }
+
+    public static void SBlockInMatrix(int value) {
+
+        Round.heights[(int) Round.x1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = value;
     }
 }

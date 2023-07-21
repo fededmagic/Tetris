@@ -35,13 +35,16 @@ public class Round {
     public static double y1 = 0;
     public static double y2 = 0;
     public static int[][] heights = null;
+    public static final double X1_SV = 3.0;
+    public static final double X2_SV = 6.0;
+    public static final double Y1_SV = 18.0;
+    public static final double Y2_SV = 20.0;
 
 
     public Round() {}
     public static void next() {
 
         Round.showMatrix();
-        //System.out.println("x1:" + x1 + ", x2:" + x2);
         updateTime();
 
         if(anew == 0) {
@@ -52,10 +55,10 @@ public class Round {
             Random random = new Random();
             choose = list[random.nextInt(7)];
 
-            x1 = 3.0;
-            x2 = 6.0;
-            y1 = 18.0;
-            y2 = 20.0;
+            x1 = X1_SV;
+            x2 = X2_SV;
+            y1 = Y1_SV;
+            y2 = Y2_SV;
         }
         else {
 

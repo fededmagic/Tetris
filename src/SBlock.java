@@ -7,12 +7,15 @@ public class SBlock {
 
         System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
         System.out.println("x2:" + Round.x2 + ", y1:" + Round.y2);
-        //System.out.println("Round.heights[(int) x1][(int) y1]: " + Round.heights[(int) x1][(int) y1]);
+        System.out.println(Round.heights[(int) Round.x1][(int) Round.y1] + ";" +
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] + ";" +
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] + ";" +
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1]);
 
         if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1 + 1][(int) Round.x1 + 1] != 0 ||
-                Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] != 0) {
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
 
             System.out.println("CONTROL");
             Round.y1++;
@@ -44,7 +47,7 @@ public class SBlock {
         Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = 0;
         Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = 0;
 
-        paintSBlock(Color.WHITE);
+        paintSBlock(Color.LIGHT_GRAY);
     }
 
     public static void paintSBlock(Color color) {

@@ -119,7 +119,7 @@ public class FrmTetris extends JFrame implements ActionListener {
 
         JPanel pnlStatus = new JPanel(new FlowLayout(FlowLayout.CENTER));
         lblStatus = new JLabel("");
-        lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 25));
         pnlStatus.add(lblStatus);
 
         JPanel pnlLine = new JPanel(new FlowLayout(FlowLayout.CENTER));

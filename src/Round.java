@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.PrintStream;
 import java.util.Random;
 
 public class Round {
@@ -110,8 +111,6 @@ public class Round {
 
     private static void removeLine(int position) {
 
-        System.out.println("REMOVELINEEEE");
-
         for(int i = position; i < 19; i++)
             for(int j = 0; j < 10; j++)
                 Round.heights[j][i] = Round.heights[j][i + 1];
@@ -119,12 +118,12 @@ public class Round {
         for(int j = 0; j < 10; j++)
             Round.heights[j][19] = 0;
 
-        redraw();
+        redraw(position);
     }
 
-    private static void redraw() {
+    private static void redraw(int position) {
 
-        for(int i = 19; i >= 0; i--)
+        for(int i = 19; i >= position; i--)
             for(int j = 0; j < 10; j++)
                 FrmTetris.graph.fillRect((double) j, (double) -(i - 19), j + 1,
                         (double) -(i - 19) + 1, getColor(Round.heights[j][-(i - 19)]));
@@ -166,6 +165,7 @@ public class Round {
 
         FrmTetris.btnStartStop.setText("START");
         FrmTetris.lblStatus.setText("");
+        FrmTetris.lblLine.setText("Score: 0");
         FrmTetris.lblCounter.setText("0:00");
 
         FrmTetris.timer.restart();

@@ -8,7 +8,8 @@ public class FrmTetris extends JFrame implements ActionListener {
     public static Timer timer = null;
     public static JCartesian graph = null;
     public static JLabel lblCounter = null;
-    private JButton btnStartStop = null;
+    public static JLabel lblStatus = null;
+    public static JButton btnStartStop = null;
     private static int dotcounter = 0;
     private static int commacounter = 0;
     private static int vcounter = 0;
@@ -21,8 +22,12 @@ public class FrmTetris extends JFrame implements ActionListener {
         setTitle("Tetris");
 
         initUI();
+        timer = new Timer(1000, e -> {
 
-        timer = new Timer(1000, e -> Round.next());
+            Round.next();
+            Round.updateTime();
+        });
+
 
         Round.heights = new int[10][20];
         for(int i = 0; i < 10; i++)
@@ -111,32 +116,41 @@ public class FrmTetris extends JFrame implements ActionListener {
         lblCounter.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         pnlCounter.add(lblCounter);
 
+        JPanel pnlStatus = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        lblStatus = new JLabel("");
+        lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        pnlStatus.add(lblStatus);
+
         JPanel pnlButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        this.btnStartStop = new JButton("START");
-        pnlButtons.add(this.btnStartStop);
+        FrmTetris.btnStartStop = new JButton("START");
+        pnlButtons.add(FrmTetris.btnStartStop);
 
         pnlSouth.add(pnlCounter);
+        pnlSouth.add(pnlStatus);
         pnlSouth.add(pnlButtons);
 
         this.add(pnlSouth, BorderLayout.SOUTH);
 
-        this.btnStartStop.addActionListener(this);
+        FrmTetris.btnStartStop.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.btnStartStop) {
+        if(e.getSource() == FrmTetris.btnStartStop) {
 
             if (timer.isRunning()) {
 
                 timer.stop();
-                this.btnStartStop.setText("START");
+                FrmTetris.btnStartStop.setText("START");
+            }
+            else if(FrmTetris.btnStartStop.getText().compareTo("RESTART") == 0) {
+
+                Round.restartGame();
             }
             else {
 
                 timer.start();
-                this.btnStartStop.setText("STOP");
-
+                FrmTetris.btnStartStop.setText("STOP");
             }
         }
     }

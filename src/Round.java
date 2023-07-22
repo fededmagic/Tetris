@@ -46,7 +46,7 @@ public class Round {
 
         System.out.println("EXECUTION ON TIME " + time);
         Round.showMatrix();
-        updateTime();
+
 
         if(anew == 0) {
 
@@ -89,7 +89,7 @@ public class Round {
         }
     }
 
-    private static void updateTime() {
+    public static void updateTime() {
 
         time++;
 
@@ -100,6 +100,24 @@ public class Round {
         String zero = "";
         if(seconds < 10) zero = "0";
         FrmTetris.lblCounter.setText(minutes + ":" + zero + seconds);
+    }
+
+    public static void restartGame() {
+
+        FrmTetris.graph.clean();
+        drawGrid();
+
+        for(int i = 0; i < 10; i++)
+            for(int j = 0; j < 20; j++)
+                Round.heights[i][j] = 0;
+
+        Round.anew = 0;
+        Round.time = 0;
+
+        FrmTetris.btnStartStop.setText("START");
+        FrmTetris.lblStatus.setText("");
+
+        FrmTetris.timer.restart();
     }
 
     public static void drawGrid() {

@@ -30,7 +30,7 @@ public class SBlock {
 
             if(Round.x2 > 9) return;
             if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
-                    Round.heights[(int) Round.x1 + 3][(int) Round.y2] == 0) {
+                    Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0) {
 
                 Round.x1increase();
                 Round.x2increase();
@@ -42,7 +42,7 @@ public class SBlock {
 
             if(Round.x1 < 1) return;
             if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
-                    Round.heights[(int) Round.x1][(int) Round.y2] == 0) {
+                    Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
                 Round.x2decrease();
@@ -80,9 +80,17 @@ public class SBlock {
 
     public static void SBlockInMatrix(int value) {
 
-        Round.heights[(int) Round.x1][(int) Round.y1] = value;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-        Round.heights[(int) Round.x1 + 2][(int) Round.y2 - 1] = value;
+        try {
+            Round.heights[(int) Round.x1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
+        }
+        catch(IndexOutOfBoundsException e) {
+
+            FrmTetris.timer.stop();
+            FrmTetris.lblStatus.setText("YOU LOOSE!");
+            FrmTetris.btnStartStop.setText("RESTART");
+        }
     }
 }

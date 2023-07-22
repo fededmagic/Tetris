@@ -11,6 +11,49 @@ public class SBlock {
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] + ";" +
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1]);
 
+        fallingControls();
+
+        SBlockInMatrix(1);
+
+        paintSBlock(Color.GREEN);
+    }
+
+    public static void deleteSBlock() {
+
+        SBlockInMatrix(0);
+        paintSBlock(Color.LIGHT_GRAY);
+    }
+
+    public static void controlLateralMovementSBlock(String direction) {
+
+        if(direction.compareTo("increase") == 0) {
+
+            if(Round.x2 > 9) return;
+            if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
+                    Round.heights[(int) Round.x1 + 3][(int) Round.y2] == 0) {
+
+                Round.x1increase();
+                Round.x2increase();
+
+                fallingControls();
+            }
+        }
+        else if(direction.compareTo("decrease") == 0) {
+
+            if(Round.x1 < 1) return;
+            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
+                    Round.heights[(int) Round.x1][(int) Round.y2] == 0) {
+
+                Round.x1decrease();
+                Round.x2decrease();
+
+                fallingControls();
+            }
+        }
+    }
+
+    public static void fallingControls() {
+
         if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
@@ -24,18 +67,7 @@ public class SBlock {
             paintSBlock(Color.GREEN);
 
             Round.anew = 0;
-            return;
         }
-
-        SBlockInMatrix(1);
-
-        paintSBlock(Color.GREEN);
-    }
-
-    public static void deleteSBlock() {
-
-        SBlockInMatrix(0);
-        paintSBlock(Color.LIGHT_GRAY);
     }
 
     public static void paintSBlock(Color color) {

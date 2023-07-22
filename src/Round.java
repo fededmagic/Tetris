@@ -138,6 +138,20 @@ public class Round {
         }
     }
 
+    public static void controlLateralMovement(String direction) {
+
+        switch (choose) {
+            case SBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case ZBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case LBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case JBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case SQUAREBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case IBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case TBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            default -> SBlock.controlLateralMovementSBlock(direction);
+        }
+    }
+
     public static void x1increase() {
 
         if(x1 > 6) return;

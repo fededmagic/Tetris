@@ -39,8 +39,7 @@ public class FrmTetris extends JFrame implements ActionListener {
                     dotcounter = 0;
                     Round.deleteCurrent();
 
-                    Round.x1increase();
-                    Round.x2increase();
+                    Round.controlLateralMovement("increase");
 
                     Round.drawCurrent();
                     Round.drawGrid();
@@ -55,8 +54,7 @@ public class FrmTetris extends JFrame implements ActionListener {
                     commacounter = 0;
                     Round.deleteCurrent();
 
-                    Round.x1decrease();
-                    Round.x2decrease();
+                    Round.controlLateralMovement("decrease");
 
                     Round.drawCurrent();
                     Round.drawGrid();

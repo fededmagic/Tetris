@@ -4,13 +4,13 @@ public class SBlock {
 
     public static void drawNewSBlock() {
 
-        System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
+/*        System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
         System.out.println("x2:" + Round.x2 + ", y1:" + Round.y2);
         System.out.println(Round.heights[(int) Round.x1][(int) Round.y1] + ";" +
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] + ";" +
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] + ";" +
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1]);
-
+*/
         fallingControls();
 
         SBlockInMatrix(1);

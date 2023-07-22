@@ -9,6 +9,7 @@ public class FrmTetris extends JFrame implements ActionListener {
     public static JCartesian graph = null;
     public static JLabel lblCounter = null;
     public static JLabel lblStatus = null;
+    public static JLabel lblLine = null;
     public static JButton btnStartStop = null;
     private static int dotcounter = 0;
     private static int commacounter = 0;
@@ -121,12 +122,18 @@ public class FrmTetris extends JFrame implements ActionListener {
         lblStatus.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         pnlStatus.add(lblStatus);
 
+        JPanel pnlLine = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        lblLine = new JLabel("Score: 0");
+        lblLine.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        pnlLine.add(lblLine);
+
         JPanel pnlButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         FrmTetris.btnStartStop = new JButton("START");
         pnlButtons.add(FrmTetris.btnStartStop);
 
         pnlSouth.add(pnlCounter);
         pnlSouth.add(pnlStatus);
+        pnlSouth.add(pnlLine);
         pnlSouth.add(pnlButtons);
 
         this.add(pnlSouth, BorderLayout.SOUTH);

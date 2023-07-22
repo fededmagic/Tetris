@@ -27,6 +27,7 @@ public class Round {
                         //   #
     }
 
+    private static int removedline = 0;
     private static int time = 0;
     public static int anew = 0;
     private static Block choose = Block.SBLOCK;
@@ -44,9 +45,9 @@ public class Round {
     public Round() {}
     public static void next() {
 
-        System.out.println("EXECUTION ON TIME " + time);
         Round.showMatrix();
 
+        lineControl();
 
         if(anew == 0) {
 
@@ -89,6 +90,54 @@ public class Round {
         }
     }
 
+    private static void lineControl() {
+
+        for(int j = 0; j < 20; j++) {
+
+            int full = 0;
+            for(int i = 0; i < 10; i++) {
+
+                if(Round.heights[i][j] != 0) full++;
+                if(full == 10) {
+
+                    Round.removedline++;
+                    FrmTetris.lblLine.setText("Score: " + Round.removedline);
+                    removeLine(j);
+                }
+            }
+        }
+    }
+
+    private static void removeLine(int position) {
+
+        System.out.println("REMOVELINEEEE");
+
+        for(int i = position; i < 19; i++)
+            for(int j = 0; j < 10; j++)
+                Round.heights[j][i] = Round.heights[j][i + 1];
+
+        for(int j = 0; j < 10; j++)
+            Round.heights[j][19] = 0;
+
+        redraw();
+    }
+
+    private static void redraw() {
+
+        for(int i = 19; i >= 0; i--)
+            for(int j = 0; j < 10; j++)
+                FrmTetris.graph.fillRect((double) j, (double) -(i - 19), j + 1,
+                        (double) -(i - 19) + 1, getColor(Round.heights[j][-(i - 19)]));
+
+        drawGrid();
+    }
+
+    private static Color getColor(int val) {
+
+        if(val == 1) return Color.GREEN;
+        return Color.LIGHT_GRAY;
+    }
+
     public static void updateTime() {
 
         time++;
@@ -113,9 +162,11 @@ public class Round {
 
         Round.anew = 0;
         Round.time = 0;
+        Round.removedline = 0;
 
         FrmTetris.btnStartStop.setText("START");
         FrmTetris.lblStatus.setText("");
+        FrmTetris.lblCounter.setText("0:00");
 
         FrmTetris.timer.restart();
     }

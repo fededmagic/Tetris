@@ -44,6 +44,7 @@ public class Round {
     public Round() {}
     public static void next() {
 
+        System.out.println("EXECUTION ON TIME " + time);
         Round.showMatrix();
         updateTime();
 

@@ -5,10 +5,13 @@ import java.awt.event.ActionListener;
 
 public class FrmTetris extends JFrame implements ActionListener {
 
-    private static Timer timer = null;
+    public static Timer timer = null;
     public static JCartesian graph = null;
     public static JLabel lblCounter = null;
     private JButton btnStartStop = null;
+    private static int dotcounter = 0;
+    private static int commacounter = 0;
+    private static int vcounter = 0;
 
     public FrmTetris() {
 
@@ -30,29 +33,47 @@ public class FrmTetris extends JFrame implements ActionListener {
 
             if(e.getKeyChar() == '.') {
 
-                Round.deleteCurrent();
+                dotcounter++;
+                if(dotcounter == 3) {
 
-                Round.x1increase();
-                Round.x2increase();
+                    dotcounter = 0;
+                    Round.deleteCurrent();
 
-                Round.drawCurrent();
-                Round.drawGrid();
+                    Round.x1increase();
+                    Round.x2increase();
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
+                }
             }
 
             if(e.getKeyChar() == ',') {
 
-                Round.deleteCurrent();
+                commacounter++;
+                if(commacounter == 3) {
 
-                Round.x1decrease();
-                Round.x2decrease();
+                    commacounter = 0;
+                    Round.deleteCurrent();
 
-                Round.drawCurrent();
-                Round.drawGrid();
+                    Round.x1decrease();
+                    Round.x2decrease();
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
+                }
             }
 
             if(e.getKeyChar() == 'v') {
 
-                Round.falldown();
+                vcounter++;
+
+                if(vcounter == 3) {
+
+                    vcounter = 0;
+
+                    Round.falldown();
+                    Round.next();
+                }
             }
 
             return false;

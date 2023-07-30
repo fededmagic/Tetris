@@ -108,7 +108,44 @@ public class SBlock {
         }
     }
 
-    public static void OneControlLateralMovementSBlock(String direction) {}
+    public static void OneControlLateralMovementSBlock(String direction) {
+
+        if(direction.compareTo("increase") == 0) {
+
+            System.out.println("x1:" + Round.x1);
+            if(Round.x2 > 9) return;
+            if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
+                    Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] == 0 &&
+                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0 &&
+                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
+
+
+                /*Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;*/
+
+                Round.x1increase();
+                Round.x2increase();
+
+                OneFallingControls();
+            }
+        }
+        else if(direction.compareTo("decrease") == 0) {
+
+            if(Round.x1 < 1) return;
+            if(Round.heights[(int) Round.x1][(int) Round.y1] == 0 &&
+                    Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0 &&
+                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0 &&
+                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
+
+                Round.x1decrease();
+                Round.x2decrease();
+
+                OneFallingControls();
+            }
+        }
+    }
 
 
 
@@ -130,10 +167,28 @@ public class SBlock {
             ZeroPaintSBlock(Color.GREEN);
 
             Round.anew = 0;
+            SBlock.sblockOrientation = 0;
         }
     }
 
-    public static void OneFallingControls() {}
+    public static void OneFallingControls() {
+
+        if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0) {
+
+            System.out.println("CONTROL");
+            Round.y1++;
+            Round.y2++;
+
+            OneSBlockInMatrix(1);
+            OnePaintSBlock(Color.GREEN);
+
+            Round.anew = 0;
+            SBlock.sblockOrientation = 0;
+        }
+    }
 
 
 

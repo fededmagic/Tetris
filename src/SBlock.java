@@ -11,7 +11,20 @@ public class SBlock {
 
     public static void changeSBlockOrientation() {
 
+        if(sblockOrientation == 0 && Round.y1 > 17) return;
         sblockOrientation = (sblockOrientation + 1) % 2;
+
+
+        if(sblockOrientation == 0) {
+
+            Round.x1decrease();
+            Round.x2decrease();
+        }
+        if(sblockOrientation == 1) {
+
+            Round.x1increase();
+            Round.x2increase();
+        }
     }
 
 
@@ -135,7 +148,13 @@ public class SBlock {
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y2 - 1, Round.x2, Round.y2, color);
     }
 
-    public static void OnePaintSBlock(Color color) {}
+    public static void OnePaintSBlock(Color color) {
+
+        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
+        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 1, Round.x1 + 2, Round.y1 + 2, color);
+        FrmTetris.graph.fillRect(Round.x1, Round.y1 + 1, Round.x1 + 1, Round.y1 + 2, color);
+        FrmTetris.graph.fillRect(Round.x1, Round.y1 + 2, Round.x1 + 1, Round.y1 + 3, color);
+    }
 
 
 
@@ -158,5 +177,19 @@ public class SBlock {
         }
     }
 
-    public static void OneSBlockInMatrix(int value) {}
+    public static void OneSBlockInMatrix(int value) {
+
+        try {
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
+        }
+        catch(IndexOutOfBoundsException e) {
+
+            FrmTetris.timer.stop();
+            FrmTetris.lblStatus.setText("YOU LOOSE!");
+            FrmTetris.btnStartStop.setText("RESTART");
+        }
+    }
 }

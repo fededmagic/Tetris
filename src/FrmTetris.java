@@ -169,7 +169,12 @@ public class FrmTetris extends JFrame implements ActionListener {
                 if(zcounter == 3) {
 
                     zcounter = 0;
+
+                    Round.deleteCurrent();
                     Round.changeOrientation(1);
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
                 }
             }
 
@@ -179,7 +184,12 @@ public class FrmTetris extends JFrame implements ActionListener {
                 if(xcounter == 3) {
 
                     xcounter = 0;
+
+                    Round.deleteCurrent();
                     Round.changeOrientation(0);
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
                 }
             }
 

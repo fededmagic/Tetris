@@ -118,12 +118,13 @@ public class Round {
         for(int j = 0; j < 10; j++)
             Round.heights[j][19] = 0;
 
-        redraw(position);
+        redraw();
     }
 
-    private static void redraw(int position) {
+    private static void redraw() {
 
-        for(int i = 19; i >= position; i--)
+        System.out.println("REDRAW");
+        for(int i = 19; i >= 0; i--)
             for(int j = 0; j < 10; j++)
                 FrmTetris.graph.fillRect((double) j, (double) -(i - 19), j + 1,
                         (double) -(i - 19) + 1, getColor(Round.heights[j][-(i - 19)]));

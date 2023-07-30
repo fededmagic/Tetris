@@ -91,6 +91,13 @@ public class Round {
         }
     }
 
+    public static void changeOrientation(int spin) {
+
+        if(spin == 0) {}
+        if(spin == 1) {}
+        SBlock.changeSBlockOrientation();
+    }
+
     private static void lineControl() {
 
         for(int j = 0; j < 20; j++) {

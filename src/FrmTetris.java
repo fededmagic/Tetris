@@ -14,6 +14,8 @@ public class FrmTetris extends JFrame implements ActionListener {
     private static int dotcounter = 0;
     private static int commacounter = 0;
     private static int vcounter = 0;
+    private static int xcounter = 0;
+    private static int zcounter = 0;
 
     public FrmTetris() {
 
@@ -35,53 +37,7 @@ public class FrmTetris extends JFrame implements ActionListener {
             for(int j = 0; j < 20; j++)
                 Round.heights[i][j] = 0;
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
-
-            if(e.getKeyChar() == '.') {
-
-                dotcounter++;
-                if(dotcounter == 3) {
-
-                    dotcounter = 0;
-                    Round.deleteCurrent();
-
-                    Round.controlLateralMovement("increase");
-
-                    Round.drawCurrent();
-                    Round.drawGrid();
-                }
-            }
-
-            if(e.getKeyChar() == ',') {
-
-                commacounter++;
-                if(commacounter == 3) {
-
-                    commacounter = 0;
-                    Round.deleteCurrent();
-
-                    Round.controlLateralMovement("decrease");
-
-                    Round.drawCurrent();
-                    Round.drawGrid();
-                }
-            }
-
-            if(e.getKeyChar() == 'v') {
-
-                vcounter++;
-
-                if(vcounter == 3) {
-
-                    vcounter = 0;
-
-                    Round.falldown();
-                    Round.next();
-                }
-            }
-
-            return false;
-        });
+        keyRecording();
 
         setVisible(true);
     }
@@ -160,6 +116,75 @@ public class FrmTetris extends JFrame implements ActionListener {
                 FrmTetris.btnStartStop.setText("STOP");
             }
         }
+    }
+
+    public static void keyRecording() {
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+
+            if(e.getKeyChar() == '.') {
+
+                dotcounter++;
+                if(dotcounter == 3) {
+
+                    dotcounter = 0;
+                    Round.deleteCurrent();
+
+                    Round.controlLateralMovement("increase");
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
+                }
+            }
+
+            if(e.getKeyChar() == ',') {
+
+                commacounter++;
+                if(commacounter == 3) {
+
+                    commacounter = 0;
+                    Round.deleteCurrent();
+
+                    Round.controlLateralMovement("decrease");
+
+                    Round.drawCurrent();
+                    Round.drawGrid();
+                }
+            }
+
+            if(e.getKeyChar() == 'v') {
+
+                vcounter++;
+                if(vcounter == 3) {
+
+                    vcounter = 0;
+                    Round.falldown();
+                    Round.next();
+                }
+            }
+
+            if(e.getKeyChar() == 'z') {
+
+                zcounter++;
+                if(zcounter == 3) {
+
+                    zcounter = 0;
+                    Round.changeOrientation(1);
+                }
+            }
+
+            if(e.getKeyChar() == 'x') {
+
+                xcounter++;
+                if(xcounter == 3) {
+
+                    xcounter = 0;
+                    Round.changeOrientation(0);
+                }
+            }
+
+            return false;
+        });
     }
 
     public static void main(String[] args) {

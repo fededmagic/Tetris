@@ -2,6 +2,23 @@ import java.awt.*;
 
 public class SBlock {
 
+    private static int sblockOrientation = 0;   //orizontal = 0, vertical = 1
+
+
+
+
+    //-- -- changing direction -- --//
+
+    public static void changeSBlockOrientation() {
+
+        sblockOrientation = (sblockOrientation + 1) % 2;
+    }
+
+
+
+
+    //-- -- general functions -- --//
+
     public static void drawNewSBlock() {
 
 /*        System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
@@ -11,20 +28,46 @@ public class SBlock {
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] + ";" +
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1]);
 */
-        fallingControls();
+        if(sblockOrientation == 0) {
 
-        SBlockInMatrix(1);
+            ZeroFallingControls();
+            ZeroSBlockInMatrix(1);
+            ZeroPaintSBlock(Color.GREEN);
+        }
+        else {
 
-        paintSBlock(Color.GREEN);
+            OneFallingControls();
+            OneSBlockInMatrix(1);
+            OnePaintSBlock(Color.GREEN);
+        }
     }
 
     public static void deleteSBlock() {
 
-        SBlockInMatrix(0);
-        paintSBlock(Color.LIGHT_GRAY);
+        if(sblockOrientation == 0) {
+
+            ZeroSBlockInMatrix(0);
+            ZeroPaintSBlock(Color.LIGHT_GRAY);
+        }
+        else {
+
+            OneSBlockInMatrix(0);
+            OnePaintSBlock(Color.LIGHT_GRAY);
+        }
     }
 
     public static void controlLateralMovementSBlock(String direction) {
+
+        if(sblockOrientation == 0) { ZeroControlLateralMovementSBlock(direction); }
+        else { OneControlLateralMovementSBlock(direction); }
+    }
+
+
+
+
+    //-- -- lateral movement controls -- --//
+
+    public static void ZeroControlLateralMovementSBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
 
@@ -35,7 +78,7 @@ public class SBlock {
                 Round.x1increase();
                 Round.x2increase();
 
-                fallingControls();
+                ZeroFallingControls();
             }
         }
         else if(direction.compareTo("decrease") == 0) {
@@ -47,12 +90,19 @@ public class SBlock {
                 Round.x1decrease();
                 Round.x2decrease();
 
-                fallingControls();
+                ZeroFallingControls();
             }
         }
     }
 
-    public static void fallingControls() {
+    public static void OneControlLateralMovementSBlock(String direction) {}
+
+
+
+
+    //-- -- falling controls -- --//
+
+    public static void ZeroFallingControls() {
 
         if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
@@ -63,14 +113,21 @@ public class SBlock {
             Round.y1++;
             Round.y2++;
 
-            SBlockInMatrix(1);
-            paintSBlock(Color.GREEN);
+            ZeroSBlockInMatrix(1);
+            ZeroPaintSBlock(Color.GREEN);
 
             Round.anew = 0;
         }
     }
 
-    public static void paintSBlock(Color color) {
+    public static void OneFallingControls() {}
+
+
+
+
+    //-- -- painting the block -- --//
+
+    public static void ZeroPaintSBlock(Color color) {
 
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
@@ -78,7 +135,14 @@ public class SBlock {
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y2 - 1, Round.x2, Round.y2, color);
     }
 
-    public static void SBlockInMatrix(int value) {
+    public static void OnePaintSBlock(Color color) {}
+
+
+
+
+    //-- -- Modifing matrix -- --//
+
+    public static void ZeroSBlockInMatrix(int value) {
 
         try {
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
@@ -93,4 +157,6 @@ public class SBlock {
             FrmTetris.btnStartStop.setText("RESTART");
         }
     }
+
+    public static void OneSBlockInMatrix(int value) {}
 }

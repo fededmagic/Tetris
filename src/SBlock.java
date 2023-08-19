@@ -108,6 +108,8 @@ public class SBlock {
         }
     }
 
+
+    //      !! check this function !!       //
     public static void OneControlLateralMovementSBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
@@ -214,7 +216,7 @@ public class SBlock {
 
 
 
-    //-- -- Modifing matrix -- --//
+    //-- -- Modifying matrix -- --//
 
     public static void ZeroSBlockInMatrix(int value) {
 

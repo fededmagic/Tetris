@@ -115,10 +115,9 @@ public class SBlock {
         if(direction.compareTo("increase") == 0) {
 
             System.out.println("x1:" + Round.x1);
-            if(Round.x2 > 9) return;
+            if(Round.x1 > 7) return;
             if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] == 0 &&
-                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
 
@@ -135,9 +134,7 @@ public class SBlock {
         }
         else if(direction.compareTo("decrease") == 0) {
 
-            if(Round.x1 < 1) return;
             if(Round.heights[(int) Round.x1][(int) Round.y1] == 0 &&
-                    Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
 
@@ -156,7 +153,7 @@ public class SBlock {
 
     public static void ZeroFallingControls() {
 
-        if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+        if(Round.x1 == 0 || Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
@@ -175,10 +172,8 @@ public class SBlock {
 
     public static void OneFallingControls() {
 
-        if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
-                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
-                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0) {
+        if(Round.x1 == 0 || Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0) {
 
             System.out.println("CONTROL");
             Round.y1++;
@@ -228,9 +223,10 @@ public class SBlock {
         }
         catch(IndexOutOfBoundsException e) {
 
+            /*
             FrmTetris.timer.stop();
             FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");
+            FrmTetris.btnStartStop.setText("RESTART");*/
         }
     }
 
@@ -243,10 +239,10 @@ public class SBlock {
             Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
         }
         catch(IndexOutOfBoundsException e) {
-
+/*
             FrmTetris.timer.stop();
             FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");
+            FrmTetris.btnStartStop.setText("RESTART");*/
         }
     }
 }

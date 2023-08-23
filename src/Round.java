@@ -231,7 +231,7 @@ public class Round {
 
     public static void x1increase() {
 
-        if(x1 > 6) return;
+        if(x1 > 7) return;
         x1++;
     }
 

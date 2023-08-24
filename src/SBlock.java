@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class SBlock {
 
-    private static int sblockOrientation = 0;   //orizontal = 0, vertical = 1
+    public static int sblockOrientation = 0;   //orizontal = 0, vertical = 1
 
 
 
@@ -134,6 +134,7 @@ public class SBlock {
         }
         else if(direction.compareTo("decrease") == 0) {
 
+            if(Round.x1 == 0) return;
             if(Round.heights[(int) Round.x1][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
@@ -153,7 +154,7 @@ public class SBlock {
 
     public static void ZeroFallingControls() {
 
-        if(Round.x1 == 0 || Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+        if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
@@ -165,14 +166,14 @@ public class SBlock {
             ZeroSBlockInMatrix(1);
             ZeroPaintSBlock(Color.GREEN);
 
-            Round.anew = 0;
             SBlock.sblockOrientation = 0;
+            Round.anew = 0;
         }
     }
 
     public static void OneFallingControls() {
 
-        if(Round.x1 == 0 || Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+        if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0) {
 
             System.out.println("CONTROL");
@@ -182,8 +183,9 @@ public class SBlock {
             OneSBlockInMatrix(1);
             OnePaintSBlock(Color.GREEN);
 
-            Round.anew = 0;
+            System.out.println("ORIENTATION = 0");
             SBlock.sblockOrientation = 0;
+            Round.anew = 0;
         }
     }
 

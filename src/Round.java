@@ -89,6 +89,8 @@ public class Round {
             drawCurrent();
             drawGrid();
         }
+
+        resetOrientation();
     }
 
     public static void changeOrientation(int spin) {
@@ -96,6 +98,20 @@ public class Round {
         if(spin == 0) {}
         if(spin == 1) {}
         SBlock.changeSBlockOrientation();
+    }
+
+    public static void resetOrientation() {
+
+        switch (choose) {
+            case SBLOCK -> SBlock.sblockOrientation = 0;
+            case ZBLOCK -> SBlock.sblockOrientation = 0;
+            case LBLOCK -> SBlock.sblockOrientation = 0;
+            case JBLOCK -> SBlock.sblockOrientation = 0;
+            case SQUAREBLOCK -> SBlock.sblockOrientation = 0;
+            case IBLOCK -> SBlock.sblockOrientation = 0;
+            case TBLOCK -> SBlock.sblockOrientation = 0;
+            default -> SBlock.sblockOrientation = 0;
+        }
     }
 
     private static void lineControl() {

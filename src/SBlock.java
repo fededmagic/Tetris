@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class SBlock {
 
-    public static int sblockOrientation = 0;   //orizontal = 0, vertical = 1
+    public static int sblockOrientation = 0;   //horizontal = 0, vertical = 1
 
 
 
@@ -109,7 +109,7 @@ public class SBlock {
     }
 
 
-    //      !! check this function !!       //
+    //      !! previous problems of the functions fixed !!       //
     public static void OneControlLateralMovementSBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
@@ -159,7 +159,6 @@ public class SBlock {
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
 
-            System.out.println("CONTROL");
             Round.y1++;
             Round.y2++;
 
@@ -176,14 +175,12 @@ public class SBlock {
         if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0) {
 
-            System.out.println("CONTROL");
             Round.y1++;
             Round.y2++;
 
             OneSBlockInMatrix(1);
             OnePaintSBlock(Color.GREEN);
 
-            System.out.println("ORIENTATION = 0");
             SBlock.sblockOrientation = 0;
             Round.anew = 0;
         }

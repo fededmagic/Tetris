@@ -37,8 +37,8 @@ public class Round {
     public static double y1 = 0;
     public static double y2 = 0;
     public static int[][] heights = null;
-    public static final double X1_SV = 3.0;
-    public static final double X2_SV = 6.0;
+    public static final double X1_SV = 4.0;
+    public static final double X2_SV = 7.0;
     public static final double Y1_SV = 18.0;
     public static final double Y2_SV = 20.0;
 
@@ -52,11 +52,10 @@ public class Round {
 
         if(anew == 0) {
 
-            Block[] list = {Block.SBLOCK, Block.ZBLOCK, Block.LBLOCK,
-                    Block.JBLOCK, Block.SQUAREBLOCK, Block.IBLOCK, Block.TBLOCK};
+            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK};
             anew = 1;
             Random random = new Random();
-            choose = list[random.nextInt(7)];
+            choose = list[random.nextInt(2)];
 
             x1 = X1_SV;
             x2 = X2_SV;
@@ -95,9 +94,21 @@ public class Round {
 
     public static void changeOrientation(int spin) {
 
-        if(spin == 0) {}
-        if(spin == 1) {}
-        SBlock.changeSBlockOrientation();
+        if(spin == 0) {
+
+            switch (choose) {
+                case SBLOCK -> SBlock.changeSBlockOrientation();
+                case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
+            }
+        }
+
+        if(spin == 1) {
+
+            switch (choose) {
+                case SBLOCK -> SBlock.changeSBlockOrientation();
+                case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
+            }
+        }
     }
 
     public static void resetOrientation() {
@@ -107,7 +118,6 @@ public class Round {
             case ZBLOCK -> SBlock.sblockOrientation = 0;
             case LBLOCK -> SBlock.sblockOrientation = 0;
             case JBLOCK -> SBlock.sblockOrientation = 0;
-            case SQUAREBLOCK -> SBlock.sblockOrientation = 0;
             case IBLOCK -> SBlock.sblockOrientation = 0;
             case TBLOCK -> SBlock.sblockOrientation = 0;
             default -> SBlock.sblockOrientation = 0;
@@ -158,6 +168,7 @@ public class Round {
     private static Color getColor(int val) {
 
         if(val == 1) return Color.GREEN;
+        if(val == 2) return Color.YELLOW;
         return Color.LIGHT_GRAY;
     }
 
@@ -210,7 +221,7 @@ public class Round {
             case ZBLOCK -> SBlock.drawNewSBlock();
             case LBLOCK -> SBlock.drawNewSBlock();
             case JBLOCK -> SBlock.drawNewSBlock();
-            case SQUAREBLOCK -> SBlock.drawNewSBlock();
+            case SQUAREBLOCK -> SquareBlock.drawNewSquareBlock();
             case IBLOCK -> SBlock.drawNewSBlock();
             case TBLOCK -> SBlock.drawNewSBlock();
             default -> SBlock.drawNewSBlock();
@@ -224,7 +235,7 @@ public class Round {
             case ZBLOCK -> SBlock.deleteSBlock();
             case LBLOCK -> SBlock.deleteSBlock();
             case JBLOCK -> SBlock.deleteSBlock();
-            case SQUAREBLOCK -> SBlock.deleteSBlock();
+            case SQUAREBLOCK -> SquareBlock.deleteSquareBlock();
             case IBLOCK -> SBlock.deleteSBlock();
             case TBLOCK -> SBlock.deleteSBlock();
             default -> SBlock.deleteSBlock();
@@ -238,7 +249,7 @@ public class Round {
             case ZBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case LBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case JBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            case SQUAREBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case SQUAREBLOCK -> SquareBlock.controlLateralMovementSquareBlock(direction);
             case IBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case TBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             default -> SBlock.controlLateralMovementSBlock(direction);

@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Round {
@@ -48,8 +48,6 @@ public class Round {
 
         Round.showMatrix();
 
-        lineControl();
-
         if(anew == 0) {
 
             Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK};
@@ -68,6 +66,8 @@ public class Round {
 
             y1controlDecrease();
             y2controlDecrease();
+
+            lineControl();
         }
 
         drawCurrent();
@@ -126,6 +126,8 @@ public class Round {
 
     private static void lineControl() {
 
+
+        ArrayList<Integer> removedLines = new ArrayList<>();
         for(int j = 0; j < 20; j++) {
 
             int full = 0;
@@ -136,21 +138,24 @@ public class Round {
 
                     Round.removedline++;
                     FrmTetris.lblLine.setText("Score: " + Round.removedline);
-                    removeLine(j);
+                    removedLines.add(j);
                 }
             }
         }
+        removeLine(removedLines);
     }
 
-    private static void removeLine(int position) {
+    private static void removeLine(ArrayList<Integer> removedLines) {
 
-        for(int i = position; i < 19; i++)
-            for(int j = 0; j < 10; j++)
-                Round.heights[j][i] = Round.heights[j][i + 1];
+        for(int position: removedLines) {
 
-        for(int j = 0; j < 10; j++)
-            Round.heights[j][19] = 0;
+            for (int i = position; i < 19; i++)
+                for (int j = 0; j < 10; j++)
+                    Round.heights[j][i] = Round.heights[j][i + 1];
 
+            for (int j = 0; j < 10; j++)
+                Round.heights[j][19] = 0;
+        }
         redraw();
     }
 

@@ -122,74 +122,77 @@ public class FrmTetris extends JFrame implements ActionListener {
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
 
-            if(e.getKeyChar() == '.') {
+            if(timer.isRunning()) {
 
-                dotcounter++;
-                if(dotcounter == 3) {
+                if(e.getKeyChar() == '.') {
 
-                    dotcounter = 0;
-                    Round.deleteCurrent();
+                    dotcounter++;
+                    if(dotcounter == 3) {
 
-                    Round.controlLateralMovement("increase");
+                        dotcounter = 0;
+                        Round.deleteCurrent();
 
-                    Round.drawCurrent();
-                    Round.drawGrid();
+                        Round.controlLateralMovement("increase");
+
+                        Round.drawCurrent();
+                        Round.drawGrid();
+                    }
                 }
-            }
 
-            if(e.getKeyChar() == ',') {
+                if(e.getKeyChar() == ',') {
 
-                commacounter++;
-                if(commacounter == 3) {
+                    commacounter++;
+                    if(commacounter == 3) {
 
-                    commacounter = 0;
-                    Round.deleteCurrent();
+                        commacounter = 0;
+                        Round.deleteCurrent();
 
-                    Round.controlLateralMovement("decrease");
+                        Round.controlLateralMovement("decrease");
 
-                    Round.drawCurrent();
-                    Round.drawGrid();
+                        Round.drawCurrent();
+                        Round.drawGrid();
+                    }
                 }
-            }
 
-            if(e.getKeyChar() == 'v') {
+                if(e.getKeyChar() == 'v') {
 
-                vcounter++;
-                if(vcounter == 3) {
+                    vcounter++;
+                    if(vcounter == 3) {
 
-                    vcounter = 0;
-                    Round.falldown();
-                    Round.next();
+                        vcounter = 0;
+                        Round.falldown();
+                        Round.next();
+                    }
                 }
-            }
 
-            if(e.getKeyChar() == 'z') {
+                if(e.getKeyChar() == 'z') {
 
-                zcounter++;
-                if(zcounter == 3) {
+                    zcounter++;
+                    if(zcounter == 3) {
 
-                    zcounter = 0;
+                        zcounter = 0;
 
-                    Round.deleteCurrent();
-                    Round.changeOrientation(1);
+                        Round.deleteCurrent();
+                        Round.changeOrientation(1);
 
-                    Round.drawCurrent();
-                    Round.drawGrid();
+                        Round.drawCurrent();
+                        Round.drawGrid();
+                    }
                 }
-            }
 
-            if(e.getKeyChar() == 'x') {
+                if(e.getKeyChar() == 'x') {
 
-                xcounter++;
-                if(xcounter == 3) {
+                    xcounter++;
+                    if(xcounter == 3) {
 
-                    xcounter = 0;
+                        xcounter = 0;
 
-                    Round.deleteCurrent();
-                    Round.changeOrientation(0);
+                        Round.deleteCurrent();
+                        Round.changeOrientation(0);
 
-                    Round.drawCurrent();
-                    Round.drawGrid();
+                        Round.drawCurrent();
+                        Round.drawGrid();
+                    }
                 }
             }
 

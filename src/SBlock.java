@@ -34,13 +34,6 @@ public class SBlock {
 
     public static void drawNewSBlock() {
 
-/*        System.out.println("x1:" + Round.x1 + ", y1:" + Round.y1);
-        System.out.println("x2:" + Round.x2 + ", y1:" + Round.y2);
-        System.out.println(Round.heights[(int) Round.x1][(int) Round.y1] + ";" +
-                Round.heights[(int) Round.x1 + 1][(int) Round.y1] + ";" +
-                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] + ";" +
-                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1]);
-*/
         if(sblockOrientation == 0) {
 
             ZeroFallingControls();
@@ -120,12 +113,6 @@ public class SBlock {
                     Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
-
-                /*Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;*/
-
                 Round.x1increase();
                 Round.x2increase();
 
@@ -195,8 +182,8 @@ public class SBlock {
 
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
-        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y2 - 1, Round.x1 + 2, Round.y2, color);
-        FrmTetris.graph.fillRect(Round.x1 + 2, Round.y2 - 1, Round.x2, Round.y2, color);
+        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 1, Round.x1 + 2, Round.y1 + 2, color);
+        FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1 + 1, Round.x1 + 3, Round.y1 + 2, color);
     }
 
     public static void OnePaintSBlock(Color color) {

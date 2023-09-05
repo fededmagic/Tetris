@@ -50,15 +50,18 @@ public class Round {
 
         if(anew == 0) {
 
-            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK};
+            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK, Block.IBLOCK};
             anew = 1;
             Random random = new Random();
-            choose = list[random.nextInt(3)];
+            choose = list[random.nextInt(4)];
 
             x1 = X1_SV;
             x2 = X2_SV;
             y1 = Y1_SV;
             y2 = Y2_SV;
+
+            choose = Block.IBLOCK;
+            if(choose == Block.IBLOCK) y1++;
         }
         else {
 
@@ -98,6 +101,7 @@ public class Round {
             case SBLOCK -> SBlock.changeSBlockOrientation();
             case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
             case ZBLOCK -> ZBlock.changeZBlockOrientation();
+            case IBLOCK -> IBlock.changeIBlockOrientation();
         }
 
     }
@@ -106,10 +110,10 @@ public class Round {
 
         switch (choose) {
             case SBLOCK -> SBlock.sblockOrientation = 0;
-            case ZBLOCK -> SBlock.sblockOrientation = 0;
+            case ZBLOCK -> ZBlock.zblockOrientation = 0;
             case LBLOCK -> SBlock.sblockOrientation = 0;
             case JBLOCK -> SBlock.sblockOrientation = 0;
-            case IBLOCK -> SBlock.sblockOrientation = 0;
+            case IBLOCK -> IBlock.iblockOrientation = 0;
             case TBLOCK -> SBlock.sblockOrientation = 0;
             default -> SBlock.sblockOrientation = 0;
         }
@@ -166,6 +170,7 @@ public class Round {
         if(val == 1) return Color.GREEN;
         if(val == 2) return Color.YELLOW;
         if(val == 3) return Color.RED;
+        if(val == 4) return Color.CYAN;
         return Color.LIGHT_GRAY;
     }
 
@@ -219,7 +224,7 @@ public class Round {
             case LBLOCK -> SBlock.drawNewSBlock();
             case JBLOCK -> SBlock.drawNewSBlock();
             case SQUAREBLOCK -> SquareBlock.drawNewSquareBlock();
-            case IBLOCK -> SBlock.drawNewSBlock();
+            case IBLOCK -> IBlock.drawNewIBlock();
             case TBLOCK -> SBlock.drawNewSBlock();
             default -> SBlock.drawNewSBlock();
         }
@@ -233,7 +238,7 @@ public class Round {
             case LBLOCK -> SBlock.deleteSBlock();
             case JBLOCK -> SBlock.deleteSBlock();
             case SQUAREBLOCK -> SquareBlock.deleteSquareBlock();
-            case IBLOCK -> SBlock.deleteSBlock();
+            case IBLOCK -> IBlock.deleteIBlock();
             case TBLOCK -> SBlock.deleteSBlock();
             default -> SBlock.deleteSBlock();
         }
@@ -247,7 +252,7 @@ public class Round {
             case LBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case JBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case SQUAREBLOCK -> SquareBlock.controlLateralMovementSquareBlock(direction);
-            case IBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case IBLOCK -> IBlock.controlLateralMovementIBlock(direction);
             case TBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             default -> SBlock.controlLateralMovementSBlock(direction);
         }
@@ -255,7 +260,7 @@ public class Round {
 
     public static void x1increase() {
 
-        if(x1 > 7) return;
+        if(x1 > 9) return;
         x1++;
     }
 

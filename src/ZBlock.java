@@ -148,8 +148,8 @@ public class ZBlock {
             Round.y1++;
             Round.y2++;
 
-            ZeroZBlockInMatrix(1);
-            ZeroPaintZBlock(Color.GREEN);
+            ZeroZBlockInMatrix(3);
+            ZeroPaintZBlock(Color.RED);
 
             ZBlock.zblockOrientation = 0;
             Round.anew = 0;
@@ -164,8 +164,8 @@ public class ZBlock {
             Round.y1++;
             Round.y2++;
 
-            OneZBlockInMatrix(1);
-            OnePaintZBlock(Color.GREEN);
+            OneZBlockInMatrix(3);
+            OnePaintZBlock(Color.RED);
 
             ZBlock.zblockOrientation = 0;
             Round.anew = 0;

@@ -83,8 +83,8 @@ public class SquareBlock {
             Round.y1++;
             Round.y2++;
 
-            SquareBlockInMatrix(1);
-            PaintSquareBlock(Color.GREEN);
+            SquareBlockInMatrix(2);
+            PaintSquareBlock(Color.YELLOW);
 
             SquareBlock.sblockOrientation = 0;
             Round.anew = 0;

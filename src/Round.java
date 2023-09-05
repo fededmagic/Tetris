@@ -50,10 +50,10 @@ public class Round {
 
         if(anew == 0) {
 
-            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK};
+            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK};
             anew = 1;
             Random random = new Random();
-            choose = list[random.nextInt(2)];
+            choose = list[random.nextInt(3)];
 
             x1 = X1_SV;
             x2 = X2_SV;
@@ -94,21 +94,12 @@ public class Round {
 
     public static void changeOrientation(int spin) {
 
-        if(spin == 0) {
-
-            switch (choose) {
-                case SBLOCK -> SBlock.changeSBlockOrientation();
-                case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
-            }
+        switch (choose) {
+            case SBLOCK -> SBlock.changeSBlockOrientation();
+            case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
+            case ZBLOCK -> ZBlock.changeZBlockOrientation();
         }
 
-        if(spin == 1) {
-
-            switch (choose) {
-                case SBLOCK -> SBlock.changeSBlockOrientation();
-                case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
-            }
-        }
     }
 
     public static void resetOrientation() {
@@ -174,6 +165,7 @@ public class Round {
 
         if(val == 1) return Color.GREEN;
         if(val == 2) return Color.YELLOW;
+        if(val == 3) return Color.RED;
         return Color.LIGHT_GRAY;
     }
 
@@ -223,7 +215,7 @@ public class Round {
 
         switch (choose) {
             case SBLOCK -> SBlock.drawNewSBlock();
-            case ZBLOCK -> SBlock.drawNewSBlock();
+            case ZBLOCK -> ZBlock.drawNewZBlock();
             case LBLOCK -> SBlock.drawNewSBlock();
             case JBLOCK -> SBlock.drawNewSBlock();
             case SQUAREBLOCK -> SquareBlock.drawNewSquareBlock();
@@ -237,7 +229,7 @@ public class Round {
 
         switch (choose) {
             case SBLOCK -> SBlock.deleteSBlock();
-            case ZBLOCK -> SBlock.deleteSBlock();
+            case ZBLOCK -> ZBlock.deleteZBlock();
             case LBLOCK -> SBlock.deleteSBlock();
             case JBLOCK -> SBlock.deleteSBlock();
             case SQUAREBLOCK -> SquareBlock.deleteSquareBlock();
@@ -251,7 +243,7 @@ public class Round {
 
         switch (choose) {
             case SBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            case ZBLOCK -> SBlock.controlLateralMovementSBlock(direction);
+            case ZBLOCK -> ZBlock.controlLateralMovementZBlock(direction);
             case LBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case JBLOCK -> SBlock.controlLateralMovementSBlock(direction);
             case SQUAREBLOCK -> SquareBlock.controlLateralMovementSquareBlock(direction);

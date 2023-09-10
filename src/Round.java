@@ -28,10 +28,10 @@ public class Round {
                         //   #
     }
 
-    private static int removedline = 0;
+    private static int removedLines = 0;
     private static int time = 0;
     public static int anew = 0;
-    private static Block choose = Block.SBLOCK;
+    public static CurrentBlock curr = null;
     public static double x1 = 0;
     public static double x2 = 0;
     public static double y1 = 0;
@@ -53,19 +53,26 @@ public class Round {
             Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK, Block.IBLOCK};
             anew = 1;
             Random random = new Random();
-            choose = list[random.nextInt(4)];
+            Block choose = list[random.nextInt(4)];
+
+            switch (choose) {
+                case SBLOCK -> curr = new SBlock();
+                case SQUAREBLOCK -> curr = new SquareBlock();
+                case ZBLOCK -> curr = new ZBlock();
+                case IBLOCK -> curr = new IBlock();
+            }
 
             x1 = X1_SV;
             x2 = X2_SV;
             y1 = Y1_SV;
             y2 = Y2_SV;
 
-            choose = Block.IBLOCK;
+            //choose = Block.IBLOCK;
             if(choose == Block.IBLOCK) y1++;
         }
         else {
 
-            deleteCurrent();
+            curr.deleteBlock();
 
             y1controlDecrease();
             y2controlDecrease();
@@ -73,7 +80,7 @@ public class Round {
             lineControl();
         }
 
-        drawCurrent();
+        curr.drawNewBlock();
 
         drawGrid();
     }
@@ -82,41 +89,22 @@ public class Round {
 
         while(anew == 1) {
 
-            deleteCurrent();
+            curr.deleteBlock();
             drawGrid();
 
             y1controlDecrease();
             y2controlDecrease();
 
-            drawCurrent();
+            curr.drawNewBlock();
             drawGrid();
         }
 
         resetOrientation();
     }
 
-    public static void changeOrientation(int spin) {
-
-        switch (choose) {
-            case SBLOCK -> SBlock.changeSBlockOrientation();
-            case SQUAREBLOCK -> SquareBlock.changeSquareBlockOrientation();
-            case ZBLOCK -> ZBlock.changeZBlockOrientation();
-            case IBLOCK -> IBlock.changeIBlockOrientation();
-        }
-
-    }
-
     public static void resetOrientation() {
 
-        switch (choose) {
-            case SBLOCK -> SBlock.sblockOrientation = 0;
-            case ZBLOCK -> ZBlock.zblockOrientation = 0;
-            case LBLOCK -> SBlock.sblockOrientation = 0;
-            case JBLOCK -> SBlock.sblockOrientation = 0;
-            case IBLOCK -> IBlock.iblockOrientation = 0;
-            case TBLOCK -> SBlock.sblockOrientation = 0;
-            default -> SBlock.sblockOrientation = 0;
-        }
+        CurrentBlock.setBlockOrientation(0);
     }
 
     private static void lineControl() {
@@ -131,8 +119,8 @@ public class Round {
                 if(Round.heights[i][j] != 0) full++;
                 if(full == 10) {
 
-                    Round.removedline++;
-                    FrmTetris.lblLine.setText("Score: " + Round.removedline);
+                    Round.removedLines++;
+                    FrmTetris.lblLine.setText("Score: " + Round.removedLines);
                     removedLines.add(j);
                 }
             }
@@ -198,7 +186,7 @@ public class Round {
 
         Round.anew = 0;
         Round.time = 0;
-        Round.removedline = 0;
+        Round.removedLines = 0;
 
         FrmTetris.btnStartStop.setText("START");
         FrmTetris.lblStatus.setText("");
@@ -214,48 +202,6 @@ public class Round {
             FrmTetris.graph.drawLine(i, 0, i, 20, Color.GRAY);
         for(double i = 1; i < 20; i++)
             FrmTetris.graph.drawLine(0, i,10, i, Color.GRAY);
-    }
-
-    public static void drawCurrent() {
-
-        switch (choose) {
-            case SBLOCK -> SBlock.drawNewSBlock();
-            case ZBLOCK -> ZBlock.drawNewZBlock();
-            case LBLOCK -> SBlock.drawNewSBlock();
-            case JBLOCK -> SBlock.drawNewSBlock();
-            case SQUAREBLOCK -> SquareBlock.drawNewSquareBlock();
-            case IBLOCK -> IBlock.drawNewIBlock();
-            case TBLOCK -> SBlock.drawNewSBlock();
-            default -> SBlock.drawNewSBlock();
-        }
-    }
-
-    public static void deleteCurrent() {
-
-        switch (choose) {
-            case SBLOCK -> SBlock.deleteSBlock();
-            case ZBLOCK -> ZBlock.deleteZBlock();
-            case LBLOCK -> SBlock.deleteSBlock();
-            case JBLOCK -> SBlock.deleteSBlock();
-            case SQUAREBLOCK -> SquareBlock.deleteSquareBlock();
-            case IBLOCK -> IBlock.deleteIBlock();
-            case TBLOCK -> SBlock.deleteSBlock();
-            default -> SBlock.deleteSBlock();
-        }
-    }
-
-    public static void controlLateralMovement(String direction) {
-
-        switch (choose) {
-            case SBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            case ZBLOCK -> ZBlock.controlLateralMovementZBlock(direction);
-            case LBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            case JBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            case SQUAREBLOCK -> SquareBlock.controlLateralMovementSquareBlock(direction);
-            case IBLOCK -> IBlock.controlLateralMovementIBlock(direction);
-            case TBLOCK -> SBlock.controlLateralMovementSBlock(direction);
-            default -> SBlock.controlLateralMovementSBlock(direction);
-        }
     }
 
     public static void x1increase() {

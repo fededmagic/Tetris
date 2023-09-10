@@ -1,26 +1,26 @@
 import java.awt.*;
 
-public class IBlock {
+public class IBlock extends CurrentBlock {
 
-    public static int iblockOrientation = 0;   //horizontal = 0, vertical = 1
+    IBlock() { super(); }
 
 
 
 
     //-- -- changing direction -- --//
 
-    public static void changeIBlockOrientation() {
+    public void changeOrientation(int spin) {
 
-        if(iblockOrientation == 0 && Round.y1 > 17) return;
-        iblockOrientation = (iblockOrientation + 1) % 2;
+        if(blockOrientation == 0 && Round.y1 > 17) return;
+        blockOrientation = (blockOrientation + 1) % 2;
 
 
-        if(iblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             Round.x1decrease();
             Round.x2decrease();
         }
-        if(iblockOrientation == 1) {
+        if(blockOrientation == 1) {
 
             if(Round.x1 == 9) Round.x1 = 8;
             Round.x1increase();
@@ -33,9 +33,9 @@ public class IBlock {
 
     //-- -- general functions -- --//
 
-    public static void drawNewIBlock() {
+    public void drawNewBlock() {
 
-        if(iblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroFallingControls();
             ZeroIBlockInMatrix(4);
@@ -49,9 +49,9 @@ public class IBlock {
         }
     }
 
-    public static void deleteIBlock() {
+    public void deleteBlock() {
 
-        if(iblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroIBlockInMatrix(0);
             ZeroPaintIBlock(Color.LIGHT_GRAY);
@@ -63,9 +63,9 @@ public class IBlock {
         }
     }
 
-    public static void controlLateralMovementIBlock(String direction) {
+    public void controlLateralMovementBlock(String direction) {
 
-        if(iblockOrientation == 0) { ZeroControlLateralMovementIBlock(direction); }
+        if(blockOrientation == 0) { ZeroControlLateralMovementIBlock(direction); }
         else { OneControlLateralMovementIBlock(direction); }
     }
 
@@ -154,7 +154,7 @@ public class IBlock {
             ZeroIBlockInMatrix(4);
             ZeroPaintIBlock(Color.CYAN);
 
-            IBlock.iblockOrientation = 0;
+            IBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -169,7 +169,7 @@ public class IBlock {
             OneIBlockInMatrix(4);
             OnePaintIBlock(Color.CYAN);
 
-            IBlock.iblockOrientation = 0;
+            IBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }

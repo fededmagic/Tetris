@@ -1,15 +1,15 @@
 import java.awt.*;
 
-public class SquareBlock {
+public class SquareBlock extends CurrentBlock {
 
-    public static int sblockOrientation = 0;   //horizontal = 0, vertical = 1
+    SquareBlock() { super(); }
 
 
 
 
     //-- -- changing direction -- --//
 
-    public static void changeSquareBlockOrientation() {
+    public void changeOrientation(int spin) {
 
         return;
     }
@@ -19,20 +19,20 @@ public class SquareBlock {
 
     //-- -- general functions -- --//
 
-    public static void drawNewSquareBlock() {
+    public void drawNewBlock() {
 
         FallingControls();
         SquareBlockInMatrix(2);
         PaintSquareBlock(Color.YELLOW);
     }
 
-    public static void deleteSquareBlock() {
+    public void deleteBlock() {
 
         SquareBlockInMatrix(0);
         PaintSquareBlock(Color.LIGHT_GRAY);
     }
 
-    public static void controlLateralMovementSquareBlock(String direction) {
+    public void controlLateralMovementBlock(String direction) {
 
         ControlLateralMovementSquareBlock(direction);
     }
@@ -86,7 +86,7 @@ public class SquareBlock {
             SquareBlockInMatrix(2);
             PaintSquareBlock(Color.YELLOW);
 
-            SquareBlock.sblockOrientation = 0;
+            SquareBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }

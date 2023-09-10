@@ -1,26 +1,26 @@
 import java.awt.*;
 
-public class SBlock {
+public class SBlock extends CurrentBlock {
 
-    public static int sblockOrientation = 0;   //horizontal = 0, vertical = 1
+    SBlock() { super(); }
 
 
 
 
     //-- -- changing direction -- --//
 
-    public static void changeSBlockOrientation() {
+    public void changeOrientation(int spin) {
 
-        if(sblockOrientation == 0 && Round.y1 > 17) return;
-        sblockOrientation = (sblockOrientation + 1) % 2;
+        if(blockOrientation == 0 && Round.y1 > 17) return;
+        blockOrientation = (blockOrientation + 1) % 2;
 
 
-        if(sblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             Round.x1decrease();
             Round.x2decrease();
         }
-        if(sblockOrientation == 1) {
+        if(blockOrientation == 1) {
 
             Round.x1increase();
             Round.x2increase();
@@ -32,9 +32,9 @@ public class SBlock {
 
     //-- -- general functions -- --//
 
-    public static void drawNewSBlock() {
+    public void drawNewBlock() {
 
-        if(sblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroFallingControls();
             ZeroSBlockInMatrix(1);
@@ -48,9 +48,9 @@ public class SBlock {
         }
     }
 
-    public static void deleteSBlock() {
+    public void deleteBlock() {
 
-        if(sblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroSBlockInMatrix(0);
             ZeroPaintSBlock(Color.LIGHT_GRAY);
@@ -62,9 +62,9 @@ public class SBlock {
         }
     }
 
-    public static void controlLateralMovementSBlock(String direction) {
+    public void controlLateralMovementBlock(String direction) {
 
-        if(sblockOrientation == 0) { ZeroControlLateralMovementSBlock(direction); }
+        if(blockOrientation == 0) { ZeroControlLateralMovementSBlock(direction); }
         else { OneControlLateralMovementSBlock(direction); }
     }
 
@@ -151,7 +151,7 @@ public class SBlock {
             ZeroSBlockInMatrix(1);
             ZeroPaintSBlock(Color.GREEN);
 
-            SBlock.sblockOrientation = 0;
+            SBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -167,7 +167,7 @@ public class SBlock {
             OneSBlockInMatrix(1);
             OnePaintSBlock(Color.GREEN);
 
-            SBlock.sblockOrientation = 0;
+            SBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }

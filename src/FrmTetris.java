@@ -130,11 +130,11 @@ public class FrmTetris extends JFrame implements ActionListener {
                     if(dotcounter == 3) {
 
                         dotcounter = 0;
-                        Round.deleteCurrent();
+                        Round.curr.deleteBlock();
 
-                        Round.controlLateralMovement("increase");
+                        Round.curr.controlLateralMovementBlock("increase");
 
-                        Round.drawCurrent();
+                        Round.curr.drawNewBlock();
                         Round.drawGrid();
                     }
                 }
@@ -145,11 +145,11 @@ public class FrmTetris extends JFrame implements ActionListener {
                     if(commacounter == 3) {
 
                         commacounter = 0;
-                        Round.deleteCurrent();
+                        Round.curr.deleteBlock();
 
-                        Round.controlLateralMovement("decrease");
+                        Round.curr.controlLateralMovementBlock("decrease");
 
-                        Round.drawCurrent();
+                        Round.curr.drawNewBlock();
                         Round.drawGrid();
                     }
                 }
@@ -172,10 +172,10 @@ public class FrmTetris extends JFrame implements ActionListener {
 
                         zcounter = 0;
 
-                        Round.deleteCurrent();
-                        Round.changeOrientation(1);
+                        Round.curr.deleteBlock();
+                        Round.curr.changeOrientation(1);
 
-                        Round.drawCurrent();
+                        Round.curr.drawNewBlock();
                         Round.drawGrid();
                     }
                 }
@@ -187,10 +187,10 @@ public class FrmTetris extends JFrame implements ActionListener {
 
                         xcounter = 0;
 
-                        Round.deleteCurrent();
-                        Round.changeOrientation(0);
+                        Round.curr.deleteBlock();
+                        Round.curr.changeOrientation(0);
 
-                        Round.drawCurrent();
+                        Round.curr.drawNewBlock();
                         Round.drawGrid();
                     }
                 }

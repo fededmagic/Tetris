@@ -1,26 +1,26 @@
 import java.awt.*;
 
-public class ZBlock {
+public class ZBlock extends CurrentBlock {
 
-    public static int zblockOrientation = 0;   //horizontal = 0, vertical = 1
+    ZBlock() { super(); }
 
 
 
 
     //-- -- changing direction -- --//
 
-    public static void changeZBlockOrientation() {
+    public void changeOrientation(int spin) {
 
-        if(zblockOrientation == 0 && Round.y1 > 17) return;
-        zblockOrientation = (zblockOrientation + 1) % 2;
+        if(blockOrientation == 0 && Round.y1 > 17) return;
+        blockOrientation = (blockOrientation + 1) % 2;
 
 
-        if(zblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             Round.x1decrease();
             Round.x2decrease();
         }
-        if(zblockOrientation == 1) {
+        if(blockOrientation == 1) {
 
             Round.x1increase();
             Round.x2increase();
@@ -32,9 +32,9 @@ public class ZBlock {
 
     //-- -- general functions -- --//
 
-    public static void drawNewZBlock() {
+    public void drawNewBlock() {
 
-        if(zblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroFallingControls();
             ZeroZBlockInMatrix(3);
@@ -48,9 +48,9 @@ public class ZBlock {
         }
     }
 
-    public static void deleteZBlock() {
+    public void deleteBlock() {
 
-        if(zblockOrientation == 0) {
+        if(blockOrientation == 0) {
 
             ZeroZBlockInMatrix(0);
             ZeroPaintZBlock(Color.LIGHT_GRAY);
@@ -62,9 +62,9 @@ public class ZBlock {
         }
     }
 
-    public static void controlLateralMovementZBlock(String direction) {
+    public void controlLateralMovementBlock(String direction) {
 
-        if(zblockOrientation == 0) { ZeroControlLateralMovementZBlock(direction); }
+        if(blockOrientation == 0) { ZeroControlLateralMovementZBlock(direction); }
         else { OneControlLateralMovementZBlock(direction); }
     }
 
@@ -151,7 +151,7 @@ public class ZBlock {
             ZeroZBlockInMatrix(3);
             ZeroPaintZBlock(Color.RED);
 
-            ZBlock.zblockOrientation = 0;
+            ZBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -167,7 +167,7 @@ public class ZBlock {
             OneZBlockInMatrix(3);
             OnePaintZBlock(Color.RED);
 
-            ZBlock.zblockOrientation = 0;
+            ZBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }

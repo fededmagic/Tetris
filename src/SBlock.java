@@ -77,7 +77,7 @@ public class SBlock extends CurrentBlock {
 
         if(direction.compareTo("increase") == 0) {
 
-            if(Round.x1 > 8) return;
+            if(Round.x1 > 6   ) return;
             if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0) {
 

@@ -50,6 +50,8 @@ public class Round {
 
         if(anew == 0) {
 
+            //if(x1 == 17) //you loose (?)
+
             Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK, Block.IBLOCK};
             anew = 1;
             Random random = new Random();
@@ -68,7 +70,7 @@ public class Round {
             y2 = Y2_SV;
 
             //choose = Block.IBLOCK;
-            if(choose == Block.IBLOCK) y1++;
+            if(choose == Block.IBLOCK) { y1++; x1--; }
         }
         else {
 

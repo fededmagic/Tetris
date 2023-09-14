@@ -11,18 +11,37 @@ public class IBlock extends CurrentBlock {
 
     public void changeOrientation(int spin) {
 
-        if(blockOrientation == 0 && Round.y1 > 17) return;
-        blockOrientation = (blockOrientation + 1) % 2;
+        if(blockOrientation == 0 && Round.y1 > 16) return;
 
+        if(blockOrientation == 1 && Round.x1 < 2) Round.x1 = 1;
+        if(blockOrientation == 1 && Round.x1 > 7) Round.x1 = 7;
+
+        if((IBlock.blockOrientation == 1) && (Round.heights[(int) Round.x1 - 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0)) {
+
+            return;
+        }
+
+        if((blockOrientation == 0) && (Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 3] != 0)) {
+
+            return;
+        }
+
+        blockOrientation = (blockOrientation + 1) % 2;
 
         if(blockOrientation == 0) {
 
             Round.x1decrease();
             Round.x2decrease();
         }
+
         if(blockOrientation == 1) {
 
-            if(Round.x1 == 9) Round.x1 = 8;
             Round.x1increase();
             Round.x2increase();
         }
@@ -79,8 +98,8 @@ public class IBlock extends CurrentBlock {
         if(direction.compareTo("increase") == 0) {
 
             System.out.println("x1:" + Round.x1);
-            if(Round.x1 > 6) return;
-            if(Round.heights[(int) Round.x1 + 3][(int) Round.y1] == 0) {
+            if(Round.x1 > 5) return;
+            if(Round.heights[(int) Round.x1 + 4][(int) Round.y1] == 0) {
 
                 Round.x1increase();
                 Round.x2increase();
@@ -90,8 +109,8 @@ public class IBlock extends CurrentBlock {
         }
         else if(direction.compareTo("decrease") == 0) {
 
-            if((Round.x1 - 1) == 0) return;
-            if(Round.heights[(int) Round.x1 - 2][(int) Round.y1] == 0) {
+            if(Round.x1 == 0) return;
+            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0) {
 
                 Round.x1decrease();
                 Round.x2decrease();
@@ -108,10 +127,10 @@ public class IBlock extends CurrentBlock {
 
             System.out.println("x1:" + Round.x1);
             if(Round.x1 > 8) return;
-            if(Round.heights[(int) Round.x1 + 1][(int) Round.y1 - 1] == 0 &&
-                    Round.heights[(int) Round.x1 + 1][(int) Round.y1] == 0 &&
+            if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0 &&
-                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
+                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0 &&
+                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 3] == 0) {
 
                 Round.x1increase();
                 Round.x2increase();
@@ -122,10 +141,10 @@ public class IBlock extends CurrentBlock {
         else if(direction.compareTo("decrease") == 0) {
 
             if(Round.x1 == 0) return;
-            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1 - 1] == 0 &&
-                    Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
+            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0 &&
-                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
+                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0 &&
+                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 3] == 0) {
 
                 Round.x1decrease();
                 Round.x2decrease();
@@ -143,10 +162,10 @@ public class IBlock extends CurrentBlock {
     public static void ZeroFallingControls() {
 
 
-        if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+        if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0) {
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 3][(int) Round.y1] != 0) {
 
             Round.y1++;
             Round.y2++;
@@ -161,7 +180,7 @@ public class IBlock extends CurrentBlock {
 
     public static void OneFallingControls() {
 
-        if(Round.y1 == 0 || Round.heights[(int) Round.x1][(int) Round.y1 - 2] != 0) {
+        if(Round.heights[(int) Round.x1][(int) Round.y1] != 0) {
 
             Round.y1++;
             Round.y2++;
@@ -181,18 +200,18 @@ public class IBlock extends CurrentBlock {
 
     public static void ZeroPaintIBlock(Color color) {
 
-        FrmTetris.graph.fillRect(Round.x1 - 1, Round.y1, Round.x1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1, Round.x1 + 3, Round.y1 + 1, color);
+        FrmTetris.graph.fillRect(Round.x1 + 3, Round.y1, Round.x1 + 4, Round.y1 + 1, color);
     }
 
     public static void OnePaintIBlock(Color color) {
 
-        FrmTetris.graph.fillRect(Round.x1, Round.y1 - 1, Round.x1 + 1, Round.y1, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1 + 1, Round.x1 + 1, Round.y1 + 2, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1 + 2, Round.x1 + 1, Round.y1 + 3, color);
+        FrmTetris.graph.fillRect(Round.x1, Round.y1 + 3, Round.x1 + 1, Round.y1 + 4, color);
     }
 
 
@@ -203,10 +222,10 @@ public class IBlock extends CurrentBlock {
     public static void ZeroIBlockInMatrix(int value) {
 
         try {
-            Round.heights[(int) Round.x1 - 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 3][(int) Round.y1] = value;
         }
         catch(IndexOutOfBoundsException e) {
 
@@ -220,10 +239,10 @@ public class IBlock extends CurrentBlock {
     public static void OneIBlockInMatrix(int value) {
 
         try {
-            Round.heights[(int) Round.x1][(int) Round.y1 - 1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 3] = value;
         }
         catch(IndexOutOfBoundsException e) {
 /*

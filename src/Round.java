@@ -52,16 +52,17 @@ public class Round {
 
             //if(x1 == 17) //you loose (?)
 
-            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK, Block.IBLOCK};
+            Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK, Block.IBLOCK, Block.TBLOCK};
             anew = 1;
             Random random = new Random();
-            Block choose = list[random.nextInt(4)];
+            Block choose = list[random.nextInt(5)];
 
             switch (choose) {
                 case SBLOCK -> curr = new SBlock();
                 case SQUAREBLOCK -> curr = new SquareBlock();
                 case ZBLOCK -> curr = new ZBlock();
                 case IBLOCK -> curr = new IBlock();
+                case TBLOCK -> curr = new TBlock();
             }
 
             x1 = X1_SV;
@@ -161,6 +162,7 @@ public class Round {
         if(val == 2) return Color.YELLOW;
         if(val == 3) return Color.RED;
         if(val == 4) return Color.CYAN;
+        if(val == 5) return Color.MAGENTA;
         return Color.LIGHT_GRAY;
     }
 

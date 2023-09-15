@@ -34,17 +34,13 @@ public class IBlock extends CurrentBlock {
 
         blockOrientation = (blockOrientation + 1) % 2;
 
-        if(blockOrientation == 0) {
-
+        if(blockOrientation == 0)
             Round.x1decrease();
-            Round.x2decrease();
-        }
 
-        if(blockOrientation == 1) {
 
+        if(blockOrientation == 1)
             Round.x1increase();
-            Round.x2increase();
-        }
+
     }
 
 
@@ -102,8 +98,6 @@ public class IBlock extends CurrentBlock {
             if(Round.heights[(int) Round.x1 + 4][(int) Round.y1] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -113,8 +107,6 @@ public class IBlock extends CurrentBlock {
             if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -133,8 +125,6 @@ public class IBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 3] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -147,8 +137,6 @@ public class IBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 3] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -168,7 +156,6 @@ public class IBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 3][(int) Round.y1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             ZeroIBlockInMatrix(4);
             ZeroPaintIBlock(Color.CYAN);
@@ -183,7 +170,6 @@ public class IBlock extends CurrentBlock {
         if(Round.heights[(int) Round.x1][(int) Round.y1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             OneIBlockInMatrix(4);
             OnePaintIBlock(Color.CYAN);

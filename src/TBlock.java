@@ -103,8 +103,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 ZeroFallingControls();
             }
         }
@@ -115,8 +113,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 ZeroFallingControls();
             }
         }
@@ -132,8 +128,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -145,8 +139,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -161,8 +153,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -174,8 +164,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1][(int) Round.y1] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -191,8 +179,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -204,8 +190,6 @@ public class TBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -222,7 +206,6 @@ public class TBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             ZeroTBlockInMatrix(5);
             ZeroPaintTBlock(Color.MAGENTA);
@@ -238,7 +221,6 @@ public class TBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             OneTBlockInMatrix(5);
             OnePaintTBlock(Color.MAGENTA);
@@ -255,7 +237,6 @@ public class TBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             TwoTBlockInMatrix(5);
             TwoPaintTBlock(Color.MAGENTA);
@@ -271,7 +252,6 @@ public class TBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             ThreeTBlockInMatrix(5);
             ThreePaintTBlock(Color.MAGENTA);

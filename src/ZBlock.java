@@ -15,16 +15,12 @@ public class ZBlock extends CurrentBlock {
         blockOrientation = (blockOrientation + 1) % 2;
 
 
-        if(blockOrientation == 0) {
-
+        if(blockOrientation == 0)
             Round.x1decrease();
-            Round.x2decrease();
-        }
-        if(blockOrientation == 1) {
 
+        if(blockOrientation == 1)
             Round.x1increase();
-            Round.x2increase();
-        }
+
     }
 
 
@@ -82,8 +78,6 @@ public class ZBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 ZeroFallingControls();
             }
         }
@@ -94,8 +88,6 @@ public class ZBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 ZeroFallingControls();
             }
         }
@@ -114,8 +106,6 @@ public class ZBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 2] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -127,8 +117,6 @@ public class ZBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -146,7 +134,6 @@ public class ZBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             ZeroZBlockInMatrix(3);
             ZeroPaintZBlock(Color.RED);
@@ -162,7 +149,6 @@ public class ZBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             OneZBlockInMatrix(3);
             OnePaintZBlock(Color.RED);

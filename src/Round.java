@@ -33,14 +33,10 @@ public class Round {
     public static int anew = 0;
     public static CurrentBlock curr = null;
     public static double x1 = 0;
-    public static double x2 = 0;
     public static double y1 = 0;
-    public static double y2 = 0;
     public static int[][] heights = null;
     public static final double X1_SV = 4.0;
-    public static final double X2_SV = 7.0;
     public static final double Y1_SV = 18.0;
-    public static final double Y2_SV = 20.0;
 
 
     public Round() {}
@@ -57,7 +53,7 @@ public class Round {
             Random random = new Random();
             Block choose = list[random.nextInt(5)];
 
-            choose = Block.TBLOCK;
+            //choose = Block.TBLOCK;
             switch (choose) {
                 case SBLOCK -> curr = new SBlock();
                 case SQUAREBLOCK -> curr = new SquareBlock();
@@ -67,9 +63,7 @@ public class Round {
             }
 
             x1 = X1_SV;
-            x2 = X2_SV;
             y1 = Y1_SV;
-            y2 = Y2_SV;
 
             if(choose == Block.IBLOCK) { y1++; x1--; }
         }
@@ -78,7 +72,6 @@ public class Round {
             curr.deleteBlock();
 
             y1controlDecrease();
-            y2controlDecrease();
 
             lineControl();
         }
@@ -96,7 +89,6 @@ public class Round {
             drawGrid();
 
             y1controlDecrease();
-            y2controlDecrease();
 
             curr.drawNewBlock();
             drawGrid();
@@ -212,22 +204,10 @@ public class Round {
         x1++;
     }
 
-    public static void x2increase() {
-
-        if(x2 > 9) return;
-        x2++;
-    }
-
     public static void x1decrease() {
 
         if(x1 < 1) return;
         x1--;
-    }
-
-    public static void x2decrease() {
-
-        if(x2 < 4) return;
-        x2--;
     }
 
     public static void y1controlDecrease() {
@@ -238,16 +218,6 @@ public class Round {
             return;
         }
         y1--;
-    }
-
-    public static void y2controlDecrease() {
-
-        if(y2 < 3) {
-
-            Round.anew = 0;
-            return;
-        }
-        y2--;
     }
 
     public static void showMatrix() {

@@ -15,16 +15,11 @@ public class SBlock extends CurrentBlock {
         blockOrientation = (blockOrientation + 1) % 2;
 
 
-        if(blockOrientation == 0) {
-
+        if(blockOrientation == 0)
             Round.x1decrease();
-            Round.x2decrease();
-        }
-        if(blockOrientation == 1) {
 
+        if(blockOrientation == 1)
             Round.x1increase();
-            Round.x2increase();
-        }
     }
 
 
@@ -77,13 +72,11 @@ public class SBlock extends CurrentBlock {
 
         if(direction.compareTo("increase") == 0) {
 
-            if(Round.x1 > 6   ) return;
+            if(Round.x1 > 6) return;
             if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 ZeroFallingControls();
             }
         }
@@ -94,15 +87,11 @@ public class SBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 ZeroFallingControls();
             }
         }
     }
 
-
-    //      !! previous problems of the functions fixed !!       //
     public static void OneControlLateralMovementSBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
@@ -114,8 +103,6 @@ public class SBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1increase();
-                Round.x2increase();
-
                 OneFallingControls();
             }
         }
@@ -127,8 +114,6 @@ public class SBlock extends CurrentBlock {
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1decrease();
-                Round.x2decrease();
-
                 OneFallingControls();
             }
         }
@@ -146,7 +131,6 @@ public class SBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             ZeroSBlockInMatrix(1);
             ZeroPaintSBlock(Color.GREEN);
@@ -162,7 +146,6 @@ public class SBlock extends CurrentBlock {
                 Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
-            Round.y2++;
 
             OneSBlockInMatrix(1);
             OnePaintSBlock(Color.GREEN);

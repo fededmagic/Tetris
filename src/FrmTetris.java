@@ -173,7 +173,7 @@ public class FrmTetris extends JFrame implements ActionListener {
                         zcounter = 0;
 
                         Round.curr.deleteBlock();
-                        Round.curr.changeOrientation(1);
+                        Round.curr.changeOrientation(1);    //spin = 1 -> left
 
                         Round.curr.drawNewBlock();
                         Round.drawGrid();
@@ -188,7 +188,7 @@ public class FrmTetris extends JFrame implements ActionListener {
                         xcounter = 0;
 
                         Round.curr.deleteBlock();
-                        Round.curr.changeOrientation(0);
+                        Round.curr.changeOrientation(0);    //spin = 0 -> right
 
                         Round.curr.drawNewBlock();
                         Round.drawGrid();

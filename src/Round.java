@@ -57,6 +57,7 @@ public class Round {
             Random random = new Random();
             Block choose = list[random.nextInt(5)];
 
+            choose = Block.TBLOCK;
             switch (choose) {
                 case SBLOCK -> curr = new SBlock();
                 case SQUAREBLOCK -> curr = new SquareBlock();
@@ -70,7 +71,6 @@ public class Round {
             y1 = Y1_SV;
             y2 = Y2_SV;
 
-            //choose = Block.IBLOCK;
             if(choose == Block.IBLOCK) { y1++; x1--; }
         }
         else {
@@ -158,12 +158,10 @@ public class Round {
 
     private static Color getColor(int val) {
 
-        if(val == 1) return Color.GREEN;
-        if(val == 2) return Color.YELLOW;
-        if(val == 3) return Color.RED;
-        if(val == 4) return Color.CYAN;
-        if(val == 5) return Color.MAGENTA;
-        return Color.LIGHT_GRAY;
+        Color[] list = {Color.LIGHT_GRAY, Color.GREEN,
+                Color.YELLOW, Color.RED,
+                Color.CYAN, Color.MAGENTA};
+        return list[val];
     }
 
     public static void updateTime() {

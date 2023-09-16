@@ -123,10 +123,21 @@ public class Round {
                     Round.removedLines++;
                     FrmTetris.lblLine.setText("Score: " + Round.removedLines);
                     removedLines.add(j);
+
+                    if(Round.removedLines == 2) winningMessage();
                 }
             }
         }
         removeLine(removedLines);
+    }
+
+    public static void winningMessage() {
+
+        FrmTetris.timer.stop();
+        FrmTetris.lblLine.setText("Score: " + Round.removedLines);
+
+        FrmTetris.lblStatus.setText("YOU WIN!");
+        FrmTetris.btnStartStop.setText("RESTART");
     }
 
     private static void removeLine(ArrayList<Integer> removedLines) {
@@ -145,7 +156,6 @@ public class Round {
 
     private static void redraw() {
 
-        System.out.println("REDRAW");
         for(int i = 19; i >= 0; i--)
             for(int j = 0; j < 10; j++)
                 FrmTetris.graph.fillRect((double) j, (double) -(i - 19), j + 1,

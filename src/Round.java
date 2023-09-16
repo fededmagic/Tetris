@@ -124,7 +124,7 @@ public class Round {
                     FrmTetris.lblLine.setText("Score: " + Round.removedLines);
                     removedLines.add(j);
 
-                    if(Round.removedLines == 2) stopMessage("WIN");
+                    if(Round.removedLines == 40) stopMessage("WIN");
                 }
             }
         }

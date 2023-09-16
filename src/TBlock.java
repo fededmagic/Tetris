@@ -15,7 +15,7 @@ public class TBlock extends CurrentBlock {
 
         if(blockOrientation == 0 && Round.y1 > 17) return;
 
-        if(spin == 0 && Round.x1 > 7 && (blockOrientation == 1 || blockOrientation == 3)) Round.x1--;
+        if(Round.x1 > 7 && (blockOrientation == 1 || blockOrientation == 3)) Round.x1--;
 
         if(spin == 0) blockOrientation = (blockOrientation + 1) % 4;
         else blockOrientation = (blockOrientation - 1 + 4) % 4;

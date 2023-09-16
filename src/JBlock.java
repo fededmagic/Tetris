@@ -1,8 +1,8 @@
 import java.awt.*;
 
-public class LBlock extends CurrentBlock {
+public class JBlock extends CurrentBlock {
 
-    LBlock() { super(); }
+    JBlock() { super(); }
 
 
 
@@ -32,26 +32,26 @@ public class LBlock extends CurrentBlock {
         if(blockOrientation == 0) {
 
             ZeroFallingControls();
-            ZeroLBlockInMatrix(6);
-            ZeroPaintLBlock(Color.ORANGE);
+            ZeroJBlockInMatrix(7);
+            ZeroPaintJBlock(Color.BLUE);
         }
         else if(blockOrientation == 1) {
 
             OneFallingControls();
-            OneLBlockInMatrix(6);
-            OnePaintLBlock(Color.ORANGE);
+            OneJBlockInMatrix(7);
+            OnePaintJBlock(Color.BLUE);
         }
         else if(blockOrientation == 2) {
 
             TwoFallingControls();
-            TwoLBlockInMatrix(6);
-            TwoPaintLBlock(Color.ORANGE);
+            TwoJBlockInMatrix(7);
+            TwoPaintJBlock(Color.BLUE);
         }
         else {
 
             ThreeFallingControls();
-            ThreeLBlockInMatrix(6);
-            ThreePaintLBlock(Color.ORANGE);
+            ThreeJBlockInMatrix(7);
+            ThreePaintJBlock(Color.BLUE);
         }
     }
 
@@ -59,32 +59,32 @@ public class LBlock extends CurrentBlock {
 
         if(blockOrientation == 0) {
 
-            ZeroLBlockInMatrix(0);
-            ZeroPaintLBlock(Color.LIGHT_GRAY);
+            ZeroJBlockInMatrix(0);
+            ZeroPaintJBlock(Color.LIGHT_GRAY);
         }
         else if(blockOrientation == 1) {
 
-            OneLBlockInMatrix(0);
-            OnePaintLBlock(Color.LIGHT_GRAY);
+            OneJBlockInMatrix(0);
+            OnePaintJBlock(Color.LIGHT_GRAY);
         }
         else if(blockOrientation == 2) {
 
-            TwoLBlockInMatrix(0);
-            TwoPaintLBlock(Color.LIGHT_GRAY);
+            TwoJBlockInMatrix(0);
+            TwoPaintJBlock(Color.LIGHT_GRAY);
         }
         else {
 
-            ThreeLBlockInMatrix(0);
-            ThreePaintLBlock(Color.LIGHT_GRAY);
+            ThreeJBlockInMatrix(0);
+            ThreePaintJBlock(Color.LIGHT_GRAY);
         }
     }
 
     public void controlLateralMovementBlock(String direction) {
 
-        if(blockOrientation == 0) { ZeroControlLateralMovementLBlock(direction); }
-        else if(blockOrientation == 1) { OneControlLateralMovementLBlock(direction); }
-        else if(blockOrientation == 2) { TwoControlLateralMovementLBlock(direction); }
-        else { ThreeControlLateralMovementLBlock(direction); }
+        if(blockOrientation == 0) { ZeroControlLateralMovementJBlock(direction); }
+        else if(blockOrientation == 1) { OneControlLateralMovementJBlock(direction); }
+        else if(blockOrientation == 2) { TwoControlLateralMovementJBlock(direction); }
+        else { ThreeControlLateralMovementJBlock(direction); }
     }
 
 
@@ -92,13 +92,13 @@ public class LBlock extends CurrentBlock {
 
     //-- -- lateral movement controls -- --//
 
-    public static void ZeroControlLateralMovementLBlock(String direction) {
+    public static void ZeroControlLateralMovementJBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
 
             if(Round.x1 > 6) return;
             if(Round.heights[(int) Round.x1 + 3][(int) Round.y1] == 0 &&
-                    Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0) {
+                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1increase();
                 ZeroFallingControls();
@@ -108,7 +108,7 @@ public class LBlock extends CurrentBlock {
 
             if(Round.x1 < 1) return;
             if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
-                    Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0) {
+                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
                 ZeroFallingControls();
@@ -116,12 +116,12 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void OneControlLateralMovementLBlock(String direction) {
+    public static void OneControlLateralMovementJBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
 
             if(Round.x1 > 7) return;
-            if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] == 0 &&
+            if(Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 2] == 0 &&
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] == 0 &&
                     Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] == 0) {
 
@@ -142,13 +142,13 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void TwoControlLateralMovementLBlock(String direction) {
+    public static void TwoControlLateralMovementJBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
 
             if(Round.x1 > 6) return;
             if(Round.heights[(int) Round.x1 + 3][(int) Round.y1 + 1] == 0 &&
-                    Round.heights[(int) Round.x1 + 1][(int) Round.y1] == 0) {
+                    Round.heights[(int) Round.x1 + 3][(int) Round.y1] == 0) {
 
                 Round.x1increase();
                 TwoFallingControls();
@@ -157,7 +157,7 @@ public class LBlock extends CurrentBlock {
         else if(direction.compareTo("decrease") == 0) {
 
             if(Round.x1 == 0) return;
-            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
+            if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 1] == 0) {
 
                 Round.x1decrease();
@@ -166,7 +166,7 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void ThreeControlLateralMovementLBlock(String direction) {
+    public static void ThreeControlLateralMovementJBlock(String direction) {
 
         if(direction.compareTo("increase") == 0) {
 
@@ -182,9 +182,9 @@ public class LBlock extends CurrentBlock {
         else if(direction.compareTo("decrease") == 0) {
 
             if(Round.x1 == 0) return;
-            if(Round.heights[(int) Round.x1][(int) Round.y1] == 0 &&
+            if(Round.heights[(int) Round.x1 - 1][(int) Round.y1] == 0 &&
                     Round.heights[(int) Round.x1][(int) Round.y1 + 1] == 0 &&
-                    Round.heights[(int) Round.x1 - 1][(int) Round.y1 + 2] == 0) {
+                    Round.heights[(int) Round.x1][(int) Round.y1 + 2] == 0) {
 
                 Round.x1decrease();
                 ThreeFallingControls();
@@ -204,10 +204,10 @@ public class LBlock extends CurrentBlock {
 
             Round.y1++;
 
-            ZeroLBlockInMatrix(6);
-            ZeroPaintLBlock(Color.ORANGE);
+            ZeroJBlockInMatrix(7);
+            ZeroPaintJBlock(Color.BLUE);
 
-            LBlock.blockOrientation = 0;
+            JBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -215,30 +215,30 @@ public class LBlock extends CurrentBlock {
     public static void OneFallingControls() {
 
         if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0) {
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] != 0) {
 
             Round.y1++;
 
-            OneLBlockInMatrix(6);
-            OnePaintLBlock(Color.ORANGE);
+            OneJBlockInMatrix(7);
+            OnePaintJBlock(Color.BLUE);
 
-            LBlock.blockOrientation = 0;
+            JBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
 
     public static void TwoFallingControls() {
 
-        if(Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
-                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0) {
+        if(Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0) {
 
             Round.y1++;
 
-            TwoLBlockInMatrix(6);
-            TwoPaintLBlock(Color.ORANGE);
+            TwoJBlockInMatrix(7);
+            TwoPaintJBlock(Color.BLUE);
 
-            LBlock.blockOrientation = 0;
+            JBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -246,14 +246,14 @@ public class LBlock extends CurrentBlock {
     public static void ThreeFallingControls() {
 
         if(Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
-                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0) {
+                Round.heights[(int) Round.x1][(int) Round.y1] != 0) {
 
             Round.y1++;
 
-            ThreeLBlockInMatrix(6);
-            ThreePaintLBlock(Color.ORANGE);
+            ThreeJBlockInMatrix(7);
+            ThreePaintJBlock(Color.BLUE);
 
-            LBlock.blockOrientation = 0;
+            JBlock.blockOrientation = 0;
             Round.anew = 0;
         }
     }
@@ -263,36 +263,36 @@ public class LBlock extends CurrentBlock {
 
     //-- -- painting the block -- --//
 
-    public static void ZeroPaintLBlock(Color color) {
+    public static void ZeroPaintJBlock(Color color) {
 
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1, Round.x1 + 3, Round.y1 + 1, color);
-        FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1 + 1, Round.x1 + 3, Round.y1 + 2, color);
+        FrmTetris.graph.fillRect(Round.x1, Round.y1 + 1, Round.x1 + 1, Round.y1 + 2, color);
     }
 
-    public static void OnePaintLBlock(Color color) {
+    public static void OnePaintJBlock(Color color) {
 
         FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1 + 1, Round.x1 + 1, Round.y1 + 2, color);
         FrmTetris.graph.fillRect(Round.x1, Round.y1 + 2, Round.x1 + 1, Round.y1 + 3, color);
-        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
+        FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 2, Round.x1 + 2, Round.y1 + 3, color);
     }
 
-    public static void TwoPaintLBlock(Color color) {
+    public static void TwoPaintJBlock(Color color) {
 
         FrmTetris.graph.fillRect(Round.x1, Round.y1 + 1, Round.x1 + 1, Round.y1 + 2, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 1, Round.x1 + 2, Round.y1 + 2, color);
         FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1 + 1, Round.x1 + 3, Round.y1 + 2, color);
-        FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
+        FrmTetris.graph.fillRect(Round.x1 + 2, Round.y1, Round.x1 + 3, Round.y1 + 1, color);
     }
 
-    public static void ThreePaintLBlock(Color color) {
+    public static void ThreePaintJBlock(Color color) {
 
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1, Round.x1 + 2, Round.y1 + 1, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 1, Round.x1 + 2, Round.y1 + 2, color);
         FrmTetris.graph.fillRect(Round.x1 + 1, Round.y1 + 2, Round.x1 + 2, Round.y1 + 3, color);
-        FrmTetris.graph.fillRect(Round.x1, Round.y1 + 2, Round.x1 + 1, Round.y1 + 3, color);
+        FrmTetris.graph.fillRect(Round.x1, Round.y1, Round.x1 + 1, Round.y1 + 1, color);
     }
 
 
@@ -300,13 +300,13 @@ public class LBlock extends CurrentBlock {
 
     //-- -- Modifying matrix -- --//
 
-    public static void ZeroLBlockInMatrix(int value) {
+    public static void ZeroJBlockInMatrix(int value) {
 
         try {
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
         }
         catch(IndexOutOfBoundsException e) {
 
@@ -317,13 +317,13 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void OneLBlockInMatrix(int value) {
+    public static void OneJBlockInMatrix(int value) {
 
         try {
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
         }
         catch(IndexOutOfBoundsException e) {
 /*
@@ -333,13 +333,13 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void TwoLBlockInMatrix(int value) {
+    public static void TwoJBlockInMatrix(int value) {
 
         try {
             Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1] = value;
+            Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
         }
         catch(IndexOutOfBoundsException e) {
 /*
@@ -349,13 +349,13 @@ public class LBlock extends CurrentBlock {
         }
     }
 
-    public static void ThreeLBlockInMatrix(int value) {
+    public static void ThreeJBlockInMatrix(int value) {
 
         try {
             Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
+            Round.heights[(int) Round.x1][(int) Round.y1] = value;
         }
         catch(IndexOutOfBoundsException e) {
 /*

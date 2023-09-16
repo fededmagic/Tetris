@@ -49,25 +49,11 @@ public class Round {
             //if(x1 == 17) //you loose (?)
 
             Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK,
-                    Block.IBLOCK, Block.TBLOCK, Block.LBLOCK};
+                    Block.IBLOCK, Block.TBLOCK, Block.LBLOCK, Block.JBLOCK};
+
             anew = 1;
             Random random = new Random();
-            Block choose = list[random.nextInt(6)];
-
-            //choose = Block.TBLOCK;
-            switch (choose) {
-                case SBLOCK -> curr = new SBlock();
-                case SQUAREBLOCK -> curr = new SquareBlock();
-                case ZBLOCK -> curr = new ZBlock();
-                case IBLOCK -> curr = new IBlock();
-                case TBLOCK -> curr = new TBlock();
-                case LBLOCK -> curr = new LBlock();
-            }
-
-            x1 = X1_SV;
-            y1 = Y1_SV;
-
-            if(choose == Block.IBLOCK) { y1++; x1--; }
+            implementChoose(list[random.nextInt(7)]);
         }
         else {
 
@@ -81,6 +67,24 @@ public class Round {
         curr.drawNewBlock();
 
         drawGrid();
+    }
+
+    public static void implementChoose(Block choose) {
+
+        switch (choose) {
+            case SBLOCK -> curr = new SBlock();
+            case SQUAREBLOCK -> curr = new SquareBlock();
+            case ZBLOCK -> curr = new ZBlock();
+            case IBLOCK -> curr = new IBlock();
+            case TBLOCK -> curr = new TBlock();
+            case LBLOCK -> curr = new LBlock();
+            case JBLOCK -> curr = new JBlock();
+        }
+
+        x1 = X1_SV;
+        y1 = Y1_SV;
+
+        if(choose == Block.IBLOCK) { y1++; x1--; }
     }
 
     public static void falldown() {

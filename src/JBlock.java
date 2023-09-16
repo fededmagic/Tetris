@@ -302,66 +302,33 @@ public class JBlock extends CurrentBlock {
 
     public static void ZeroJBlockInMatrix(int value) {
 
-        try {
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
             Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-
-            /*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
     }
 
     public static void OneJBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
     }
 
     public static void TwoJBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
     }
 
     public static void ThreeJBlockInMatrix(int value) {
 
-        try {
             Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
             Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
             Round.heights[(int) Round.x1][(int) Round.y1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
     }
 }

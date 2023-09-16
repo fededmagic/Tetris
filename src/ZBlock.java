@@ -186,34 +186,17 @@ public class ZBlock extends CurrentBlock {
 
     public static void ZeroZBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-
-            /*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
     }
 
     public static void OneZBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1] = value;
     }
 }

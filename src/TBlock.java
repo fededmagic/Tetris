@@ -301,66 +301,33 @@ public class TBlock extends CurrentBlock {
 
     public static void ZeroTBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-
-            /*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
     }
 
     public static void OneTBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 2] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
     }
 
     public static void TwoTBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
     }
 
     public static void ThreeTBlockInMatrix(int value) {
 
-        try {
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
-            Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
-            Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
-        }
-        catch(IndexOutOfBoundsException e) {
-/*
-            FrmTetris.timer.stop();
-            FrmTetris.lblStatus.setText("YOU LOOSE!");
-            FrmTetris.btnStartStop.setText("RESTART");*/
-        }
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] = value;
+        Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] = value;
+        Round.heights[(int) Round.x1][(int) Round.y1 + 1] = value;
     }
 }

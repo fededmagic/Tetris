@@ -46,7 +46,7 @@ public class Round {
 
         if(anew == 0) {
 
-            //if(x1 == 17) //you loose (?)
+            if(y1 == Y1_SV) stopMessage("LOOSE");
 
             Block[] list = {Block.SBLOCK, Block.SQUAREBLOCK, Block.ZBLOCK,
                     Block.IBLOCK, Block.TBLOCK, Block.LBLOCK, Block.JBLOCK};
@@ -124,19 +124,19 @@ public class Round {
                     FrmTetris.lblLine.setText("Score: " + Round.removedLines);
                     removedLines.add(j);
 
-                    if(Round.removedLines == 2) winningMessage();
+                    if(Round.removedLines == 2) stopMessage("WIN");
                 }
             }
         }
         removeLine(removedLines);
     }
 
-    public static void winningMessage() {
+    public static void stopMessage(String message) {
 
         FrmTetris.timer.stop();
         FrmTetris.lblLine.setText("Score: " + Round.removedLines);
 
-        FrmTetris.lblStatus.setText("YOU WIN!");
+        FrmTetris.lblStatus.setText("YOU " + message + "!");
         FrmTetris.btnStartStop.setText("RESTART");
     }
 

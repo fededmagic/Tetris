@@ -12,6 +12,7 @@ public class TBlock extends CurrentBlock {
     public void changeOrientation(int spin) {
 
         //spin = 0 -> right --- spin = 1 -> left
+        int previous = blockOrientation;
 
         if(blockOrientation == 0 && Round.y1 > 17) return;
 
@@ -19,6 +20,8 @@ public class TBlock extends CurrentBlock {
 
         if(spin == 0) blockOrientation = (blockOrientation + 1) % 4;
         else blockOrientation = (blockOrientation - 1 + 4) % 4;
+
+        rotationControls(previous);
     }
 
 
@@ -258,6 +261,32 @@ public class TBlock extends CurrentBlock {
     }
 
 
+
+
+    // -- -- rotation controls -- -- //
+
+    public static void rotationControls(int previous) {
+
+        if((blockOrientation == 0) && (Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 1) && (Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 2) && (Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 3) && (Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0)) blockOrientation = previous;
+    }
 
 
     //-- -- painting the block -- --//

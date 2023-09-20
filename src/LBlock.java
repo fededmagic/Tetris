@@ -13,6 +13,8 @@ public class LBlock extends CurrentBlock {
 
         //spin = 0 -> right --- spin = 1 -> left
 
+        int previous = blockOrientation;
+
         if(blockOrientation == 0 && Round.y1 > 17) return;
 
         if(Round.x1 > 7 && (blockOrientation == 1 || blockOrientation == 3)) Round.x1--;
@@ -20,6 +22,7 @@ public class LBlock extends CurrentBlock {
         if(spin == 0) blockOrientation = (blockOrientation + 1) % 4;
         else blockOrientation = (blockOrientation - 1 + 4) % 4;
 
+        rotationControls(previous);
     }
 
 
@@ -256,6 +259,34 @@ public class LBlock extends CurrentBlock {
             LBlock.blockOrientation = 0;
             Round.anew = 0;
         }
+    }
+
+
+
+
+    // -- -- rotation controls -- -- //
+
+    public static void rotationControls(int previous) {
+
+        if((blockOrientation == 0) && (Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 1) && (Round.heights[(int) Round.x1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 2) && (Round.heights[(int) Round.x1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 2][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1] != 0)) blockOrientation = previous;
+
+        else if((blockOrientation == 3) && (Round.heights[(int) Round.x1 + 1][(int) Round.y1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 1] != 0 ||
+                Round.heights[(int) Round.x1 + 1][(int) Round.y1 + 2] != 0 ||
+                Round.heights[(int) Round.x1][(int) Round.y1 + 2] != 0)) blockOrientation = previous;
     }
 
 
